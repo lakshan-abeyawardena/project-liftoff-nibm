@@ -35,7 +35,7 @@
 }
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *,*::before,*::after{box-sizing:inherit}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"Chakra Petch",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Chakra Petch",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:18px;line-height:1.5;-webkit-font-smoothing:antialiased}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg2)}
 button,input,select{font:inherit;color:inherit}
 :focus-visible{outline:3px solid var(--cyan);outline-offset:2px}
@@ -224,6 +224,79 @@ table.tb{border-collapse:collapse;width:100%;min-width:720px;font-size:.88rem}
 .crew .cs{font-size:.95rem;margin-top:4px}
 .huge{font-family:"Monoton",sans-serif;font-size:clamp(3rem,10vw,7rem);color:var(--cyan);text-shadow:var(--glow-c);line-height:1}
 
+
+/* ===== v3: cleaner crew screens ===== */
+.hud-in{grid-template-columns:repeat(4,minmax(0,1fr)) auto}
+@media (max-width:820px){.hud-in{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.hid{font-size:.72rem;color:var(--muted);border:1px dashed var(--line);border-radius:999px;padding:3px 10px;white-space:nowrap}
+.art{aspect-ratio:auto;height:clamp(190px,36vh,420px)}
+@media (max-width:720px){.art{height:auto;aspect-ratio:16/9}}
+.hcap{position:absolute;left:16px;bottom:16px;z-index:3;max-width:min(80%,640px);background:#FFD23F;color:#14092B;border:3px solid #14092B;box-shadow:6px 6px 0 #14092B;padding:8px 14px;font-weight:700;font-size:clamp(1.05rem,2.4vw,1.6rem);line-height:1.2;transform:rotate(-1deg)}
+.sit{font-size:1.15rem;max-width:62ch;margin:14px 0 4px}
+.voices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0}
+@media (max-width:760px){.voices{grid-template-columns:1fr}}
+.voice{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--cyan);border-radius:12px;padding:10px 14px}
+.voice:nth-child(2){border-left-color:var(--pink)}.voice:nth-child(3){border-left-color:var(--gold)}
+.voice .vr{font-size:.8rem;color:var(--muted);font-weight:700}
+.voice .vt{font-size:1.02rem;margin-top:2px}
+.cards{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.cc{min-height:150px;gap:8px}
+.cc h3{font-size:1.2rem}
+.cc .tl{margin-top:auto;font-size:.92rem;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px}
+.lockbar{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:16px 0}
+.status{position:sticky;top:calc(env(safe-area-inset-top,0px) + 64px);z-index:4;display:flex;gap:14px;align-items:center;flex-wrap:wrap;background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:10px 16px;margin:12px 0}
+.status .cd{font-size:1.8rem}
+/* Deal */
+.fchips{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px}
+.fchip{display:flex;gap:10px;align-items:center;text-align:left;background:var(--card);border:2px solid var(--line);border-radius:12px;padding:8px 12px;cursor:pointer;color:var(--ink)}
+.fchip[aria-pressed="true"]{border-color:var(--cyan);box-shadow:var(--glow-c)}
+.fchip[aria-pressed="false"]{opacity:.6}
+.fchip .ic{font-size:1.4rem}
+.fchip .nm{font-weight:700;font-size:.98rem;line-height:1.2}
+.fchip .ds{font-size:.78rem;color:var(--muted)}
+.fchip .pt{margin-left:auto;font-weight:700;color:var(--pink);white-space:nowrap}
+.seg{display:flex;gap:8px;flex-wrap:wrap}
+.seg button{flex:1 1 120px;background:var(--card);border:2px solid var(--line);border-radius:10px;padding:10px;cursor:pointer;text-align:center}
+.seg button[aria-pressed="true"]{border-color:var(--cyan);box-shadow:var(--glow-c)}
+.seg small{display:block;color:var(--muted);font-size:.76rem}
+.fit{display:flex;gap:18px;flex-wrap:wrap;align-items:center;background:var(--panel);border:2px solid var(--line);border-radius:14px;padding:12px 16px;margin-top:16px}
+.fit.good{border-color:var(--money)}.fit.bad{border-color:var(--red)}
+.fit .big{font-size:1.3rem;font-weight:700}
+.lbl{font-weight:700;color:var(--cyan);margin:18px 0 8px;font-size:1rem}
+/* Outcome */
+.deltas{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+.delta{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:6px 14px;font-weight:700}
+.delta.up{color:var(--money);border-color:var(--money)}.delta.down{color:var(--red);border-color:var(--red)}
+.odds{font-size:1.5rem;font-weight:700;color:var(--gold)}
+/* Roles */
+.roles{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin:16px 0}
+.role{background:var(--panel);border:2px solid var(--line);border-radius:14px;padding:12px 14px}
+.role.opt{border-style:dashed}
+.role .ri{font-size:1.6rem}
+.role b{display:block;font-size:1.05rem}
+.role span{font-size:.88rem;color:var(--muted)}
+/* Host poll */
+.poll{display:grid;gap:14px;margin-top:16px}
+.pcol{background:var(--panel);border:2px solid var(--line);border-radius:14px;padding:12px;min-width:0}
+.pcol .ph{display:flex;gap:10px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:8px}
+.pcol .pl{font-family:"Monoton",sans-serif;font-size:2rem;color:var(--pink);text-shadow:var(--glow);line-height:1}
+.pcol .pt{font-weight:700;font-size:1rem;line-height:1.2}
+.pcol .pn{margin-left:auto;font-size:1.6rem;font-weight:700;color:var(--cyan)}
+.pchips{display:flex;flex-wrap:wrap;gap:6px}
+.pchip{display:inline-block;max-width:100%;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:5px 10px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hstage.compact .art{height:clamp(110px,16vh,190px)}
+.hstage.compact .ticker{display:none}
+.hstage.compact h1.neon{font-size:clamp(1.5rem,3vw,2.2rem)}
+.hstage.compact .banner-x{font-size:clamp(1.3rem,3vw,2rem)}
+.pchip.auto{color:var(--red);border-color:var(--red)}
+.crews{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.crew{min-height:0;padding:10px 12px}
+.crew .cs{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tb td{max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lead{display:grid;gap:8px;margin-top:14px}
+.lrow{display:grid;grid-template-columns:48px minmax(0,1.2fr) minmax(0,1.6fr) 110px 110px 90px;gap:10px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+.lrow .rk{font-family:"Monoton",sans-serif;font-size:1.4rem;color:var(--gold)}
+
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.ticker .run span{padding-left:0}}
 </style>
 </head>
@@ -238,16 +311,14 @@ var PERIODS = ['Jan–Feb 2027','Mar–Apr 2027','May–Jun 2027','Jul–Aug 202
 var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
 var FEATURES = [
-  {id:'flight', name:'Flight control system', pts:30, val:0, risk:'High', must:true, sigil:'🛩️', desc:'Keeps the Skyline stable in the air. No flight control, no flying car.'},
-  {id:'safety', name:'Safety and emergency landing', pts:20, val:0, risk:'Medium', must:true, sigil:'🪂', desc:'Brings the car down safely when something fails. No certification without it.'},
-  {id:'ota', name:'Over-the-air updates and security', pts:12, val:2, risk:'Medium', sigil:'📡', desc:'Patch every car remotely and keep attackers out. Unglamorous. Possibly vital.'},
-  {id:'autopilot', name:'Autopilot and auto-hover', pts:28, val:5, risk:'High', sigil:'🧭', desc:'The headline feature from the demo video. Buyers expect it.'},
-  {id:'app', name:'Owner mobile app', pts:14, val:4, risk:'Low', sigil:'📱', desc:'Summon, unlock and run pre-flight checks from a phone.'},
-  {id:'nav', name:'3D airspace navigation', pts:16, val:3, risk:'Medium', sigil:'🗺️', desc:'Routes, no-fly zones and air traffic, in three dimensions.'},
-  {id:'voice', name:'Voice assistant', pts:10, val:2, risk:'Medium', sigil:'🎙️', desc:'“Skyline, take me home.”'},
-  {id:'telemetry', name:'Fleet telemetry and BI dashboard', pts:10, val:2, risk:'Low', sigil:'📊', desc:'Every car reports back, so the company sees what’s really happening.'},
-  {id:'launch', name:'Launch-mode thruster controls', pts:8, val:4, risk:'Low', sigil:'🚀', desc:'Zero to 100 in under a second. Pure hype, and buyers love it.'},
-  {id:'social', name:'Flight recording and sharing', pts:6, val:1, risk:'Low', sigil:'🎬', desc:'Record the flight, post it, go viral.'}
+  {id:'flight', name:'Flight control', pts:30, val:0, risk:'High', must:true, sigil:'🛩️', desc:'Keeps the car stable in the air.'},
+  {id:'safety', name:'Emergency landing', pts:20, val:0, risk:'Medium', must:true, sigil:'🪂', desc:'Lands safely if anything fails.'},
+  {id:'ota', name:'Over-the-air updates', pts:12, val:2, risk:'Medium', sigil:'📡', desc:'Fix every car remotely. Boring. Maybe vital.'},
+  {id:'autopilot', name:'Autopilot', pts:28, val:5, risk:'High', sigil:'🧭', desc:'The feature buyers saw in the demo.'},
+  {id:'app', name:'Owner app', pts:14, val:4, risk:'Low', sigil:'📱', desc:'Unlock and summon from a phone.'},
+  {id:'nav', name:'3D sky navigation', pts:16, val:3, risk:'Medium', sigil:'🗺️', desc:'Routes and no-fly zones in 3D.'},
+  {id:'telemetry', name:'Fleet data dashboard', pts:10, val:2, risk:'Low', sigil:'📊', desc:'Every car reports its data back.'},
+  {id:'launch', name:'Launch mode', pts:8, val:4, risk:'Low', sigil:'🚀', desc:'0–100 in a second. Pure hype.'}
 ];
 var HOVER = {id:'hover', name:'60-second hover mode', pts:12, val:4, risk:'High', sigil:'🌀', desc:'The CEO’s new idea, added mid-project.'};
 var ALLF = FEATURES.concat([HOVER]);
@@ -260,6 +331,7 @@ var TEST = {
   thorough:{f:0.7, q0:82, dq:2, ds:2, label:'Thorough', sigil:'🛡️', desc:'Automated suites, security reviews, flight simulations.'}
 };
 
+function oddsPct(mod,dc){var c=0;for(var r=1;r<=20;r++){if(r===20||(r!==1&&r+mod>=dc))c++;}return c*5;}
 function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
 function fById(id){for(var i=0;i<ALLF.length;i++){if(ALLF[i].id===id)return ALLF[i];}return null;}
 function scopePts(ids){return ids.reduce(function(a,id){var f=fById(id);return a+(f?f.pts:0);},0);}
@@ -314,102 +386,75 @@ function runPeriod(s){
 }
 
 var STAGES = [
-  {name:'The Deal', when:'December 2026',
-   panels:['Neo-Colombo, December 2026.','Volta Aeromotive is building a flying car: the Skyline.','Your crew writes all of its software. You have $12M. Production starts 1 January 2028.'],
+  {name:'The Deal', when:'December 2026', headline:'Win the deal',
+   situation:'Volta needs all the software for its flying car by 1 January 2028. Pick your scope, your team size and how much you test.',
    news:'Volta Aeromotive promises a flying car by January 2028. Your crew writes every line of its code.',
    say:'Every crew gets the same budget and deadline. Nobody can build everything. Watch who promises the most.',
    lesson:'Estimates are promises made with the least information you’ll ever have.',
-   advice:{planner:'Commit to what we can actually finish. A promise broken in December hurts more than a smaller one kept.',
-     insider:'Buyers paid deposits for the flying. Autopilot and the app are what they’ll judge us on.',
-     mechanic:'Flight control always takes longer than anyone thinks. Leave slack.',
-     lookout:'Minimal testing looks fast on paper. The bugs just wait for launch day.',
-     accountant:'Each engineer costs $0.1M every two months. Past 20 people we’re over budget before anything goes wrong.',
-     fixer:'The CEO promised the world a flying car. He’ll notice what’s missing more than what’s late.'}},
-  {name:'Ghosted', when:'January 2027',
-   panels:['Two weeks in.','Ishara, your lead flight-control engineer, resigns. A rival startup doubled her pay.','She’s the only one who understands the stabilisation core.'],
+   voices:[{r:'am',t:'The client wants everything. Autopilot and the app sell cars.'},{r:'pm',t:'Promise only what we can deliver. Leave room for surprises.'},{r:'qa',t:'Less testing looks fast now. The bugs wait for launch day.'}]},
+  {name:'Ghosted', when:'January 2027', headline:'Your star engineer just quit',
+   situation:'Ishara leaves in two weeks for a rival startup. She’s the only one who knows the flight-control code.',
    news:'Star engineer quits Volta for a rival air-taxi startup. She leaves in two weeks.',
-   say:'Your story: a key person leaving mid-project.',
+   say:'A key person leaving mid-project.',
    lesson:'People aren’t interchangeable. Knowledge walks out the door with them.',
-   advice:{planner:'Losing our best person hurts. Decide fast; uncertainty costs more.',
-     insider:'What knowledge just walked out? Is any of it written down?',
-     mechanic:'Nobody else really understands the flight core. Spreading it thin is risky.',
-     lookout:'Rushed handovers are where bugs are born.',
-     accountant:'A headhunter costs $0.2M. Not replacing her saves money every period.',
-     fixer:'The CEO doesn’t want to hear about staffing. He wants to hear “on track”.'}},
-  {name:'The Boss Wants Hover', when:'March 2027',
-   panels:['A demo clip hits 40 million views overnight.','The CEO walks into your stand-up.','“Sixty seconds of hover. In the launch car. Non-negotiable.”'],
+   voices:[{r:'dev',t:'Nobody else understands the flight code. We need a replacement.'},{r:'pm',t:'A new hire costs money and seven weeks. Can we cover the gap?'},{r:'qa',t:'Rushed handovers are where bugs are born.'}]},
+  {name:'The Boss Wants Hover', when:'March 2027', headline:'The CEO wants hover. Now.',
+   situation:'A demo video went viral. The CEO adds 60-second hover mode: 12 more points of work, same deadline.',
    news:'Volta CEO promises 60-second hover mode at launch. Twelve more points of work, same deadline.',
-   say:'Your story: a senior stakeholder changing scope mid-project.',
+   say:'A senior stakeholder changing scope mid-project.',
    lesson:'Scope creep rarely arrives as a formal change request. It arrives as an excited executive. Data is your best negotiating tool.',
-   advice:{planner:'If we accept every new idea, the deadline becomes fiction.',
-     insider:'Hover really excites buyers. But is it worth more than what we’d drop?',
-     mechanic:'Twelve more points on a full plan means something gives.',
-     lookout:'Features added late get the least testing.',
-     accountant:'Scope changes are never free, even when nobody sends an invoice.',
-     fixer:'He listens to numbers, not complaints. If our plan is truly full, show him.'}},
-  {name:'Dead Link', when:'May 2027',
-   panels:['The thruster vendor’s API was due last month.','It arrived today.','Half the documentation doesn’t match the hardware.'],
+   voices:[{r:'am',t:'The CEO is thrilled. Saying no will cost us goodwill.'},{r:'ba',t:'Hover is exciting. Is it worth more than what we’d drop?'},{r:'pm',t:'If our plan is already full, show him the numbers.'}]},
+  {name:'Dead Link', when:'May 2027', headline:'The vendor let you down',
+   situation:'The thruster supplier’s software arrived a month late, and its documentation is wrong.',
    news:'Thruster supplier misses its delivery. Engineers report the documentation is wrong.',
-   say:'Your story: a third-party dependency that let you down.',
+   say:'A third-party dependency that let you down.',
    lesson:'Dependencies you don’t control are risks you still own. Workarounds create technical debt.',
-   advice:{planner:'Waiting is a decision too. It just doesn’t feel like one.',
-     insider:'Customers never see the vendor. They only see our launch date.',
-     mechanic:'I can fake the interface with a workaround. It’ll work… until it doesn’t.',
-     lookout:'A workaround on the thrusters? I’d test that twice.',
-     accountant:'Paying the vendor a premium hurts, but it’s a known cost.',
-     fixer:'Vendors move faster for money than for emails.'}},
-  {name:'The Squeeze', when:'July 2027',
-   panels:['Your lead investor wants the Skyline at a global air show.','“Ready by 1 November, or the next $1.5M goes elsewhere.”','Your deadline just lost two months.'],
+   voices:[{r:'arch',t:'I can build a workaround. It’ll work… until it doesn’t.'},{r:'sec',t:'A workaround on the thrusters is a security risk.'},{r:'pm',t:'Waiting costs time. Paying the vendor costs money. Pick one.'}]},
+  {name:'The Squeeze', when:'July 2027', headline:'Deadline cut by two months',
+   situation:'The investor wants the car at an air show. New deadline: 1 November 2027, or the next $1.5M goes elsewhere.',
    news:'Investor demands Volta launch two months early: new deadline 1 November 2027.',
-   say:'Your story: a deadline pulled forward by someone above you.',
+   say:'A deadline pulled forward by someone above you.',
    lesson:'Brooks’s law: adding people to a late project makes it later. Early design choices create options later.',
-   advice:{planner:'Adding people to a late project usually makes it later. New people need the old people’s time.',
-     insider:'What does the customer need on day one, and what can wait a month?',
-     mechanic:'If we built over-the-air updates, we can ship the core and send the rest by update.',
-     lookout:'A squeezed deadline squeezes testing first.',
-     accountant:'Eight more engineers is $0.8M every two months. Saying no costs the $1.5M tranche.',
-     fixer:'The investor has other options. Saying no has a price. Sometimes it’s worth paying.'}},
-  {name:'Zero-Day', when:'September 2027',
-   panels:['Midnight. Your ethical hacker calls.','From a laptop in a car park, she took control of the test car’s flight system.','Launch is weeks away.'],
-   news:'Unconfirmed reports of a remote-takeover flaw in Volta’s flying car.',
-   say:'Your story: a serious defect or security issue found late.',
+   voices:[{r:'pm',t:'Adding people to a late project usually makes it later.'},{r:'devops',t:'If we built over-the-air updates, we can ship the rest later.'},{r:'am',t:'The investor has options. Saying no has a price.'}]},
+  {name:'Zero-Day', when:'September 2027', headline:'A critical security flaw',
+   situation:'A security test took control of the test car’s flight system. Launch is only weeks away.',
+   news:'Unconfirmed reports of a serious security flaw in Volta’s flying car.',
+   say:'A serious defect or security issue found late.',
    lesson:'Security isn’t a feature you bolt on at the end. Honest disclosure protects trust.',
-   advice:{planner:'This is a schedule problem and a trust problem. Trust is harder to rebuild.',
-     insider:'A car that can be hijacked mid-air is the end of the product.',
-     mechanic:'Without over-the-air updates, patching later means recalling every car.',
-     lookout:'I won’t sign off on launch with this open. Write that down.',
-     accountant:'Fixing costs time now. Fixing after launch costs lawsuits.',
-     fixer:'Regulators always find out. Better they hear it from us.'}},
-  {name:'Burnout City', when:'October 2027',
-   panels:['Three weekends in a row.','Two engineers ask for a week off.','One of them looks unwell.'],
+   voices:[{r:'sec',t:'I won’t sign off on launch with this open.'},{r:'am',t:'Regulators always find out. Better they hear it from us.'},{r:'devops',t:'Without over-the-air updates, a later fix means recalling every car.'}]},
+  {name:'Burnout City', when:'October 2027', headline:'The team is burning out',
+   situation:'Three weekends of overtime in a row. Two engineers ask for a week off.',
    news:'Inside Volta: staff describe punishing hours ahead of launch.',
-   say:'Your story: burnout or a crunch you lived through.',
+   say:'Burnout or a crunch you lived through.',
    lesson:'Crunch buys short-term speed with long-term quality and people.',
-   advice:{planner:'Tired teams make expensive mistakes. But the deadline is real.',
-     insider:'Most customers won’t miss one small feature.',
-     mechanic:'A weekend crunch buys a few points. It also buys bugs.',
-     lookout:'Exhausted people skip checks. That’s when quality drops.',
-     accountant:'Crunch doesn’t cost salary. It costs the people who quit afterwards.',
-     fixer:'The CEO is asking whether everyone is “all in” this weekend.'}},
-  {name:'Launch Night', when:'Launch',
-   panels:['The cameras are live.','The world is watching the Skyline.','One roll decides the demo.'],
+   voices:[{r:'dev',t:'One more weekend like this and people will quit.'},{r:'pm',t:'The deadline is real. Can we cut something small instead?'},{r:'qa',t:'Tired people skip checks. That’s when quality drops.'}]},
+  {name:'Launch Night', when:'Launch', headline:'Launch night',
+   situation:'The cameras are live. One roll decides the demo.',
    news:'Live from the Skyline launch in Neo-Colombo. Every crew rolls for its live demo.',
-   say:'Let crews roll one at a time for drama, then reveal the endings.',
-   lesson:'Quality and security debt get collected on launch day.'}
+   say:'Explain the odds: “You can’t control luck. You can control your odds.” Let crews roll one at a time for drama.',
+   lesson:'Quality and security debt get collected on launch day.', voices:[]}
 ];
 var BOSS_PICK = {1:'B',2:'A',3:'B',4:'A',5:'B',6:'B'};
+var TL = {
+  1:{A:'⏱ Slower now, 💰 +$0.2M',B:'💰 Saves money, no delay announced',C:'📦 Cut a feature, 💰 saves money'},
+  2:{A:'📦 +12 points, same deadline',B:'📦 +12 points, cut 10+ points',C:'🎲 A gamble: a full plan improves your odds'},
+  3:{A:'⏱ Much slower for two months',B:'⏱ Full speed, no extra cost',C:'💰 +$0.6M, full speed'},
+  4:{A:'💰 +$0.8M every two months, deadline 1 Nov',B:'📦 Cut features, deadline 1 Nov',C:'⏱ Core by 1 Nov, the rest by update by 1 Jan',D:'⏱ Keep 1 Jan, 💰 lose $1.5M of budget'},
+  5:{A:'⏱ Slower for two months',B:'⏱ No delay, fix it after launch',C:'⏱ Slower, 💰 +$0.3M audit'},
+  6:{A:'⏱ A little slower, 🙂 rested team',B:'⏱ Faster for two months',C:'📦 Cut a feature, 🙂 rested team'}
+};
 var CHOICES = {
   1:[
     {id:'A',sigil:'📜',title:'Recruit a replacement',flavor:'Post the job. Pay a headhunter. Wait for the right person.',fx:['+$0.2M headhunter fee','Slower this period while you hire and onboard'],
      apply:function(s){s.spent+=0.2;s.mod.delta-=3;return 'The headhunter finds someone good, in seven weeks. The team carries the gap until then.';}},
-    {id:'B',sigil:'⚖️',title:'Spread her work across the team',flavor:'No new hire. Everyone takes a piece.',fx:['Team shrinks by one, saving money','No delay announced'],
+    {id:'B',sigil:'⚖️',title:'Spread her work around',flavor:'No new hire. Everyone takes a piece.',fx:['Team shrinks by one, saving money','No delay announced'],
      apply:function(s){s.n-=1;s.M-=15;s.Q-=5;return 'The plan holds on paper. In the corridors, people are working late, and nobody quite owns the flight core.';}},
-    {id:'C',sigil:'✂️',title:'Cut a feature to absorb the loss',flavor:'Shrink the promise to match the team.',fx:['Team shrinks by one','You choose a feature to cut'],drop:{min:1},
+    {id:'C',sigil:'✂️',title:'Cut a feature',flavor:'Shrink the promise to match the team.',fx:['Team shrinks by one','You choose a feature to cut'],drop:{min:1},
      req:function(s){return optionalIn(s).length?null:'No optional features left to cut.';},
      apply:function(s,c){s.n-=1;dropFeatures(s,c.drop);return 'You cut scope early, while it’s still cheap. The CEO hasn’t noticed. Yet.';}}
   ],
   2:[
-    {id:'A',sigil:'🤝',title:'Accept the decree',flavor:'The CEO is the CEO. Add hover, keep the date.',fx:['+12 points of scope','Same deadline, same team'],
+    {id:'A',sigil:'🤝',title:'Accept it',flavor:'The CEO is the CEO. Add hover, keep the date.',fx:['+12 points of scope','Same deadline, same team'],
      apply:function(s){addHover(s);s.M-=5;return 'Hover joins the plan. The team nods in the meeting and groans in the chat.';}},
     {id:'B',sigil:'🔄',title:'Trade it',flavor:'Add hover, but drop something of equal size.',fx:['+12 points of hover','Cut at least 10 points of other features'],drop:{minPts:10},
      req:function(s){return optionalIn(s).length?null:'No optional features left to trade.';},
@@ -423,11 +468,11 @@ var CHOICES = {
        addHover(s);s.M-=10;return 'He isn’t convinced. “You clearly have room.” Hover goes in anyway, and you’ve spent credibility getting there.';}}
   ],
   3:[
-    {id:'A',sigil:'⏳',title:'Wait for the vendor’s fix',flavor:'Do it properly. Lose the time.',fx:['Much slower this period','No extra cost'],
+    {id:'A',sigil:'⏳',title:'Wait for the vendor',flavor:'Do it properly. Lose the time.',fx:['Much slower this period','No extra cost'],
      apply:function(s){s.mod.mult*=0.6;s.M-=5;return 'Six weeks of waiting. The team works on what it can and watches the calendar.';}},
     {id:'B',sigil:'🩹',title:'Build a workaround',flavor:'Fake the interface and keep moving.',fx:['Full speed this period','No extra cost'],
      apply:function(s){s.Q-=10;s.Sec-=10;s.flags.workaround=true;return 'The workaround works. Nobody is quite sure why. Your Lookout quietly writes something down.';}},
-    {id:'C',sigil:'💰',title:'Escalate and pay a premium',flavor:'Money talks. The vendor puts its best people on it.',fx:['+$0.6M to the vendor','Full speed this period'],
+    {id:'C',sigil:'💰',title:'Pay the vendor extra',flavor:'Money talks. The vendor puts its best people on it.',fx:['+$0.6M to the vendor','Full speed this period'],
      apply:function(s){s.spent+=0.6;return 'The vendor’s senior team fixes the API in days. Expensive, and clean.';}}
   ],
   4:[
@@ -439,7 +484,7 @@ var CHOICES = {
     {id:'C',sigil:'🛰️',title:'Phased launch',flavor:'Core car flies on 1 November. Everything else arrives by over-the-air update by 1 January.',fx:['Core must be ready by 1 Nov','Rest by 1 Jan 2028'],
      req:function(s){return has(s,'ota')?null:'Locked: you didn’t build over-the-air updates in the Deal.';},
      apply:function(s){s.phased=true;s.deadline=5;s.M+=5;return 'The investor gets an air-show car. Customers get the rest by update. This only works because you planned for it.';}},
-    {id:'D',sigil:'🛑',title:'Hold the original date',flavor:'Tell the investor no.',fx:['Keep 1 Jan 2028','Budget cut by $1.5M'],
+    {id:'D',sigil:'🛑',title:'Say no to the investor',flavor:'Tell the investor no.',fx:['Keep 1 Jan 2028','Budget cut by $1.5M'],
      apply:function(s){s.budget-=1.5;s.flags.pushback=true;s.M+=5;return 'The investor walks away with the tranche. Your timeline survives; your budget doesn’t.';}}
   ],
   5:[
@@ -447,7 +492,7 @@ var CHOICES = {
      apply:function(s){s.mod.delta-=has(s,'ota')?2:5;s.Sec+=20;return 'The team patches the vulnerability and re-tests. It costs you weeks you didn’t have.';}},
     {id:'B',sigil:'🎭',title:'Launch now, patch later',flavor:'Keep the date. Nobody outside knows.',fx:['No delay','Patch after launch'],
      apply:function(s){s.Sec-=has(s,'ota')?25:40;s.flags.shipVuln=true;s.M-=5;return 'The ticket is marked “post-launch”. Your Lookout asks for her objection to be put in writing.';}},
-    {id:'C',sigil:'📣',title:'Disclose and fix properly',flavor:'Tell the CEO and the regulator. Fix it the right way.',fx:['Slower this period','+$0.3M for an external audit'],
+    {id:'C',sigil:'📣',title:'Disclose and fix it',flavor:'Tell the CEO and the regulator. Fix it the right way.',fx:['Slower this period','+$0.3M for an external audit'],
      apply:function(s){s.mod.delta-=has(s,'ota')?3:6;s.spent+=0.3;s.Sec+=30;s.M+=5;s.flags.disclosed=true;return 'An uncomfortable meeting. Then the regulator thanks you. The team is proud of how this was handled.';}}
   ],
   6:[
@@ -455,7 +500,7 @@ var CHOICES = {
      apply:function(s){s.mod.delta-=1;s.M+=10;return 'They come back sharper. The rest of the team noticed that you meant it.';}},
     {id:'B',sigil:'🔥',title:'Weekend crunch, no leave',flavor:'Everyone in. Just this once.',fx:['Faster this period'],
      apply:function(s){s.mod.mult*=1.25;s.M-=25;s.Q-=10;s.Sec-=5;return 'The burndown chart looks great. The commit messages at 3 a.m. do not.';}},
-    {id:'C',sigil:'🍃',title:'Approve leave and cut a small feature',flavor:'Protect the people and the date.',fx:['Slightly slower this period','Choose a feature to cut'],drop:{min:1},
+    {id:'C',sigil:'🍃',title:'Approve leave, cut a feature',flavor:'Protect the people and the date.',fx:['Slightly slower this period','Choose a feature to cut'],drop:{min:1},
      req:function(s){return optionalIn(s).length?null:'No optional features left to cut.';},
      apply:function(s,c){s.mod.delta-=1;s.M+=10;dropFeatures(s,c.drop);return 'A smaller car, a rested team. Most customers will never notice what’s missing.';}}
   ]
@@ -523,24 +568,23 @@ function finalize(s,seed){
   return o;
 }
 /* ======================= ENGINE END ======================= */
-/* ======================= APP ======================= */
+/* ======================= APP v3 ======================= */
 var DEFAULT_DB = '';
 var IMG_DIR = 'img/';
 var ROLES = [
-  {k:'planner',title:'The Planner',role:'Project Manager',sigil:'🗺️',job:'Balances time, cost and scope. Breaks ties.'},
-  {k:'insider',title:'The Insider',role:'Business Analyst',sigil:'🕵️',job:'Knows what customers really need.'},
-  {k:'mechanic',title:'The Mechanic',role:'Tech Lead',sigil:'🔧',job:'Knows what the code can take.'},
-  {k:'lookout',title:'The Lookout',role:'QA and Security Lead',sigil:'👁️',job:'Guards quality and security.'},
-  {k:'accountant',title:'The Accountant',role:'Finance',sigil:'💵',job:'Knows what every choice really costs.'},
-  {k:'fixer',title:'The Fixer',role:'Client Liaison',sigil:'🤝',job:'Speaks for the CEO and the investors.'}
+  {k:'pm',title:'Project Manager',icon:'📋',job:'Owns time, cost, scope and people. Makes the final call.'},
+  {k:'ba',title:'Business Analyst',icon:'🔍',job:'Knows what the customer really needs.'},
+  {k:'arch',title:'Solution Architect',icon:'🏗️',job:'Owns the design and technical risks.'},
+  {k:'dev',title:'Development Lead',icon:'💻',job:'Knows how long things really take to build.'},
+  {k:'qa',title:'QA Lead',icon:'🧪',job:'Guards quality and testing.'},
+  {k:'am',title:'Account Manager',icon:'🤝',job:'Speaks for the client: the CEO and investors.'},
+  {k:'devops',title:'DevOps Lead',icon:'🚀',job:'Owns releases and updates.',opt:'7th person',cover:'arch'},
+  {k:'sec',title:'Security Lead',icon:'🛡️',job:'Owns security risks.',opt:'8th person',cover:'qa'}
 ];
-var ART = {
-  hero:{a:'#1a0b3d',b:'#7a1b7a',c:'#ff6a5c'},
-  0:{a:'#1a0b3d',b:'#6a1b7a',c:'#ff6a5c'},1:{a:'#0d0b2e',b:'#3b1a6b',c:'#c44dff'},2:{a:'#2a0b3d',b:'#a0186f',c:'#ff8a3d'},
-  3:{a:'#06202a',b:'#0f4c5c',c:'#2de2e6'},4:{a:'#2b0a1e',b:'#8a1c3a',c:'#ffb13d'},5:{a:'#1a0410',b:'#5c0a1f',c:'#ff2e4d'},
-  6:{a:'#07061a',b:'#1d1450',c:'#7a5cff'},7:{a:'#1a0b3d',b:'#c2187a',c:'#ffd23f'}
-};
-var ROMAN=['0','1','2','3','4','5','6','7'];
+function roleOf(k){for(var i=0;i<ROLES.length;i++)if(ROLES[i].k===k)return ROLES[i];return ROLES[0];}
+function roleReader(k){var r=roleOf(k);return r.cover?r.title+' (or '+roleOf(r.cover).title+')':r.title;}
+var ART={hero:{a:'#1a0b3d',b:'#7a1b7a',c:'#ff6a5c'},0:{a:'#1a0b3d',b:'#6a1b7a',c:'#ff6a5c'},1:{a:'#0d0b2e',b:'#3b1a6b',c:'#c44dff'},2:{a:'#2a0b3d',b:'#a0186f',c:'#ff8a3d'},
+  3:{a:'#06202a',b:'#0f4c5c',c:'#2de2e6'},4:{a:'#2b0a1e',b:'#8a1c3a',c:'#ffb13d'},5:{a:'#1a0410',b:'#5c0a1f',c:'#ff2e4d'},6:{a:'#07061a',b:'#1d1450',c:'#7a5cff'},7:{a:'#1a0b3d',b:'#c2187a',c:'#ffd23f'}};
 var PHASES=[['brief','Briefing'],['vote','Voting open'],['closed','Voting closed'],['reveal','Reveal']];
 
 var LS={get:function(k){try{return localStorage.getItem(k);}catch(e){return null;}},set:function(k,v){try{localStorage.setItem(k,v);}catch(e){}}};
@@ -549,240 +593,180 @@ function sanitizeSession(x){return String(x||'').toLowerCase().replace(/[^a-z0-9
 function normDb(x){x=String(x||'').trim();if(!/^https?:\/\//.test(x))return '';return x.replace(/\/+$/,'');}
 function money(x){return '$'+(Math.round(x*10)/10).toFixed(1)+'M';}
 function reduceMotion(){return !!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);}
-function missionLabel(k){return k===7?'Final mission':'Mission '+ROMAN[k];}
+function missionLabel(k){return k===7?'Final mission':'Mission '+k;}
+function fmtSecs(x){if(x===Infinity)return '∞';x=Math.max(0,Math.ceil(x));return Math.floor(x/60)+':'+String(x%60).padStart(2,'0');}
 
 var qs=new URLSearchParams(location.search);
 var hashTok=(location.hash||'').replace('#','').toLowerCase();
-var APP={role:null,team:null,session:'',db:'',sync:false,syncMsg:'',control:{stage:-1,phase:'brief',voteSecs:90,voteAt:0,teams:6},
-  s:null,sel:null,hostData:{},showChoices:false,showResults:false,voteSeen:null,tick:null};
-
+var APP={role:null,team:null,session:'',db:'',sync:false,syncMsg:'',control:{stage:-1,phase:'brief',voteSecs:90,voteStart:0,teams:6},
+  s:null,sel:null,hostData:{},showNotes:false,showResults:false,offset:0,clockOk:false,readOnly:false};
 (function(){
   var m=hashTok.match(/^team([1-8])$/);
   if(hashTok==='host'||qs.has('host'))APP.role='host';
-  else if(hashTok==='screen'||qs.has('screen'))APP.role='screen';
+  else if(hashTok==='screen'||qs.has('screen')){APP.role='host';APP.readOnly=true;}
   else if(m){APP.role='team';APP.team=+m[1];}
   else if(/^[1-8]$/.test(qs.get('team')||'')){APP.role='team';APP.team=+qs.get('team');}
   APP.session=sanitizeSession(qs.get('s')||LS.get('liftoff:session')||'liftoff');
   APP.db=normDb(qs.get('db')||LS.get('liftoff:db')||DEFAULT_DB);
+  APP.cid=(APP.role==='team'?'team'+APP.team:APP.readOnly?'screen':'host')+'-'+Math.random().toString(36).slice(2,8);
 })();
 
-/* ---------- Sync: Firebase Realtime Database REST ---------- */
+/* ---------- Sync (Firebase Realtime Database REST) ---------- */
 function dbUrl(p){return APP.db+'/sessions/'+APP.session+(p?'/'+p:'')+'.json';}
 function dbGet(p){return fetch(dbUrl(p),{cache:'no-store'}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json();});}
 function dbPut(p,v){return fetch(dbUrl(p),{method:'PUT',body:JSON.stringify(v)}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json();});}
 function dbDel(p){return fetch(dbUrl(p),{method:'DELETE'}).then(function(r){if(!r.ok)throw new Error(r.status);});}
-function mergeControl(c){APP.control=Object.assign({stage:-1,phase:'brief',voteSecs:90,voteAt:0,teams:6},c||{});}
+function mergeControl(c){APP.control=Object.assign({stage:-1,phase:'brief',voteSecs:90,voteStart:0,teams:6},c||{});}
 function testSync(){
   if(!APP.db){APP.sync=false;APP.syncMsg='off';return Promise.resolve(false);}
-  return dbGet('control').then(function(c){APP.sync=true;APP.syncMsg='on';if(c)mergeControl(c);return true;})
+  return dbGet('control').then(function(c){APP.sync=true;APP.syncMsg='on';if(c)mergeControl(c);return syncClock().then(function(){return true;});})
     .catch(function(){APP.sync=false;APP.syncMsg='fail';return false;});
 }
+/* Server clock: write a server timestamp, read it back, keep the sample with the shortest round trip */
+function clockSample(){
+  var t0=Date.now();
+  return dbPut('clock/'+APP.cid,{'.sv':'timestamp'}).then(function(v){
+    var t1=Date.now();
+    if(typeof v==='number')return {rtt:t1-t0,off:v-(t0+t1)/2};
+    return dbGet('clock/'+APP.cid).then(function(v2){var t2=Date.now();return typeof v2==='number'?{rtt:t2-t0,off:v2-(t0+t2)/2}:null;});
+  }).catch(function(){return null;});
+}
+function syncClock(){
+  var best=null;
+  function one(){return clockSample().then(function(x){if(x&&(!best||x.rtt<best.rtt))best=x;});}
+  return one().then(one).then(one).then(function(){if(best){APP.offset=best.off;APP.clockOk=true;}dbDel('clock/'+APP.cid).catch(function(){});});
+}
+function serverNow(){return Date.now()+APP.offset;}
+function voteRemaining(){var c=APP.control;if(c.phase!=='vote')return 0;if(!c.voteSecs)return Infinity;if(!c.voteStart)return c.voteSecs;return Math.max(0,(c.voteStart+c.voteSecs*1000-serverNow())/1000);}
 
 /* ---------- Art ---------- */
 var _artCache={};
 function lcg(seed){var x=seed;return function(){x=(x*1103515245+12345)%2147483648;return x/2147483648;};}
 function skylineSvg(key){
   if(_artCache[key])return _artCache[key];
-  var p=ART[key]||ART.hero, r=lcg(7), id='g'+key, b='';
-  var x=0;while(x<1200){var w=36+Math.floor(r()*60),h=70+Math.floor(r()*170);
-    if(x>280&&x<380){x+=w;continue;}
+  var p=ART[key]||ART.hero,r=lcg(7),id='g'+key,b='',x=0;
+  while(x<1200){var w=36+Math.floor(r()*60),h=70+Math.floor(r()*170);if(x>280&&x<380){x+=w;continue;}
     b+='<rect x="'+x+'" y="'+(330-h)+'" width="'+(w-4)+'" height="'+h+'" fill="#120828"/>';
     for(var wy=330-h+10;wy<320;wy+=14){for(var wx=x+6;wx<x+w-10;wx+=10){var q=r();if(q<0.28)b+='<rect x="'+wx+'" y="'+wy+'" width="4" height="6" fill="'+(q<0.1?'#ff3ea5':q<0.2?'#2de2e6':'#ffd23f')+'" opacity=".75"/>';}}
     x+=w;}
-  var grid='';for(var gx=-600;gx<=1800;gx+=80){grid+='<line x1="600" y1="330" x2="'+gx+'" y2="400" stroke="#2de2e6" stroke-opacity=".35" stroke-width="1"/>';}
-  for(var gy=0;gy<5;gy++){var yy=332+gy*gy*3.4;grid+='<line x1="0" y1="'+yy+'" x2="1200" y2="'+yy+'" stroke="#2de2e6" stroke-opacity=".3"/>';}
-  var stripes='';for(var s=0;s<6;s++){stripes+='<rect x="740" y="'+(262+s*12)+'" width="240" height="'+(2+s)+'" fill="'+p.b+'"/>';}
-  var svg='<svg viewBox="0 0 1200 400" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'+
-   '<defs><linearGradient id="sky'+id+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+p.a+'"/><stop offset=".62" stop-color="'+p.b+'"/><stop offset=".83" stop-color="'+p.c+'"/></linearGradient>'+
-   '<linearGradient id="sun'+id+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd23f"/><stop offset="1" stop-color="#ff3ea5"/></linearGradient>'+
-   '<filter id="gl'+id+'" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>'+
-   '<rect width="1200" height="400" fill="url(#sky'+id+')"/>'+
-   '<g opacity=".7">'+[[90,40],[210,80],[520,30],[640,70],[1080,50],[1150,110],[30,120]].map(function(s){return '<circle cx="'+s[0]+'" cy="'+s[1]+'" r="1.6" fill="#fff"/>';}).join('')+'</g>'+
-   '<circle cx="860" cy="300" r="112" fill="url(#sun'+id+')"/>'+stripes+
-   b+
-   '<g filter="url(#gl'+id+')" stroke="#ff3ea5" stroke-width="3" fill="#1a0a33"><path d="M322 330 L326 128 L334 128 L338 330 Z"/><path d="M330 30 C300 52 296 100 312 118 L348 118 C364 100 360 52 330 30 Z"/><path d="M314 108 C322 92 338 92 346 108" fill="none"/><path d="M318 96 C324 80 336 80 342 96" fill="none"/><rect x="306" y="118" width="48" height="10" rx="3"/></g>'+
+  var grid='';for(var gx=-600;gx<=1800;gx+=80)grid+='<line x1="600" y1="330" x2="'+gx+'" y2="400" stroke="#2de2e6" stroke-opacity=".35"/>';
+  var stripes='';for(var s=0;s<6;s++)stripes+='<rect x="740" y="'+(262+s*12)+'" width="240" height="'+(2+s)+'" fill="'+p.b+'"/>';
+  var svg='<svg viewBox="0 0 1200 400" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="sky'+id+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+p.a+'"/><stop offset=".62" stop-color="'+p.b+'"/><stop offset=".83" stop-color="'+p.c+'"/></linearGradient><linearGradient id="sun'+id+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd23f"/><stop offset="1" stop-color="#ff3ea5"/></linearGradient></defs>'+
+   '<rect width="1200" height="400" fill="url(#sky'+id+')"/><circle cx="860" cy="300" r="112" fill="url(#sun'+id+')"/>'+stripes+b+
+   '<g stroke="#ff3ea5" stroke-width="3" fill="#1a0a33"><path d="M322 330 L326 128 L334 128 L338 330 Z"/><path d="M330 30 C300 52 296 100 312 118 L348 118 C364 100 360 52 330 30 Z"/><rect x="306" y="118" width="48" height="10" rx="3"/></g>'+
    '<rect x="0" y="330" width="1200" height="70" fill="#0c0520"/>'+grid+
-   '<g fill="#07020f"><path d="M60 400 C70 330 74 300 80 262 C60 250 40 254 22 262 C42 246 64 244 80 250 C70 232 52 222 34 222 C58 214 76 226 86 242 C90 222 104 208 122 204 C108 218 98 232 94 250 C112 242 134 244 150 256 C128 252 108 254 94 264 C90 300 88 340 84 400 Z"/>'+
-   '<path d="M1110 400 C1104 340 1102 300 1098 270 C1080 262 1062 264 1046 272 C1062 256 1082 256 1098 262 C1090 244 1074 234 1058 232 C1080 226 1096 238 1104 254 C1108 236 1120 224 1138 220 C1126 234 1116 246 1112 262 C1128 256 1148 258 1162 268 C1142 264 1124 266 1112 274 C1112 310 1114 350 1120 400 Z"/></g>'+
-   '<g transform="translate(905 120)" filter="url(#gl'+id+')"><ellipse cx="60" cy="42" rx="56" ry="7" fill="'+p.c+'" opacity=".55"/>'+
-   '<path d="M0 30 L28 14 L84 10 L120 24 L116 34 L6 36 Z" fill="#0d0620" stroke="#2de2e6" stroke-width="2.5"/><path d="M36 14 L52 2 L80 2 L90 11" fill="none" stroke="#2de2e6" stroke-width="2.5"/>'+
-   '<line x1="-60" y1="22" x2="-14" y2="22" stroke="#fff" stroke-opacity=".5"/><line x1="-80" y1="30" x2="-20" y2="30" stroke="#fff" stroke-opacity=".35"/></g>'+
-   '</svg>';
+   '<g transform="translate(905 120)"><ellipse cx="60" cy="42" rx="56" ry="7" fill="'+p.c+'" opacity=".55"/><path d="M0 30 L28 14 L84 10 L120 24 L116 34 L6 36 Z" fill="#0d0620" stroke="#2de2e6" stroke-width="2.5"/></g></svg>';
   _artCache[key]=svg;return svg;
 }
 function imgTag(key){var n=key==='hero'?'hero':'ch'+key;return '<img class="art-img" alt="" src="'+IMG_DIR+n+'.jpg" data-alts="'+IMG_DIR+n+'.png|'+IMG_DIR+n+'.webp" onerror="artFallback(this)">';}
 function artFallback(el){var a=(el.getAttribute('data-alts')||'').split('|').filter(Boolean);if(a.length){el.setAttribute('data-alts',a.slice(1).join('|'));el.src=a[0];}else el.remove();}
-function artHtml(key,panels,badge){
-  var caps=(panels||[]).map(function(t,i){return '<div class="cap c'+i+'">'+esc(t)+'</div>';}).join('');
-  return '<div class="art">'+skylineSvg(key)+imgTag(key)+(badge?'<div class="badge">'+esc(badge)+'</div>':'')+'</div>'+
-    (panels&&panels.length?'<div class="caps">'+caps+'</div>':'');
-}
-function tickerHtml(text){return '<div class="ticker"><b>NCN Live</b><div class="run"><span>'+esc(text)+'</span></div></div>';}
+function artHtml(key,headline,badge){return '<div class="art">'+skylineSvg(key)+imgTag(key)+(headline?'<div class="hcap">'+esc(headline)+'</div>':'')+(badge?'<div class="badge">'+esc(badge)+'</div>':'')+'</div>';}
+function tickerHtml(t){return '<div class="ticker"><b>NCN Live</b><div class="run"><span>'+esc(t)+'</span></div></div>';}
 
 /* ---------- Team state ---------- */
 function teamKey(){return 'liftoff:'+APP.session+':team'+APP.team;}
 function saveTeam(){
-  var s=APP.s;LS.set(teamKey(),JSON.stringify(s));
-  if(!APP.sync)return;
-  var r=s.result,pub={name:s.name||('Crew '+APP.team),stageDone:s.stageDone,sealed:s.pending?s.pending.stage:-1,picks:s.picks,auto:s.auto||{},at:Date.now(),state:s,
-    result:r?{ending:r.ending,onTime:r.onTime,monthsLate:r.monthsLate,cost:r.cost,budget:r.budget,over:r.over,value:r.value,valueMax:r.valueMax,Q:r.Q,Sec:r.Sec,M:r.M,score:r.score,roll:r.roll.r+(r.roll.mod>=0?'+':'')+r.roll.mod}:null};
+  var s=APP.s;LS.set(teamKey(),JSON.stringify(s));if(!APP.sync)return;
+  var r=s.result,pub={name:s.name||('Crew '+APP.team),stageDone:s.stageDone,sealed:s.pending?s.pending.stage:-1,picks:s.picks,letters:s.letters||{},auto:s.auto||{},at:Date.now(),state:s,
+    result:r?{ending:r.ending,onTime:r.onTime,monthsLate:r.monthsLate,cost:r.cost,budget:r.budget,over:r.over,value:r.value,valueMax:r.valueMax,Q:r.Q,Sec:r.Sec,M:r.M,score:r.score}:null};
   dbPut('teams/team'+APP.team,pub).catch(function(){});
 }
 function loadLocal(){var raw=LS.get(teamKey());if(!raw)return null;try{var s=JSON.parse(raw);return s&&s.v===1?s:null;}catch(e){return null;}}
-
 var $app=document.getElementById('app'),$hud=document.getElementById('hud'),$modal=document.getElementById('modal');
 
-/* ---------- HUD ---------- */
-function heat(s){var fc=forecast(s),h=1;if(fc.late&&s.done<s.S)h+=2;if(fc.costAtEnd>s.budget)h+=1;if(s.M<40)h+=1;return clamp(h,1,5);}
-function moraleWord(M){return M>=75?'Fired up':M>=60?'Steady':M>=40?'Strained':M>=25?'Fraying':'Breaking';}
-function qualitySignal(Q){return Q>=70?'Few bug reports':Q>=50?'Bug reports rising':'Bugs piling up';}
+/* ---------- HUD (4 gauges) ---------- */
+function moodWord(M){return M>=75?'Fired up':M>=60?'Good':M>=40?'Tired':M>=25?'Stressed':'Breaking';}
+function lateMonths(s){var fc=forecast(s);if(s.done>=s.S)return 0;return Math.max(0,fc.finishM-(s.phased?12:deadlineMonths(s)));}
 function renderHud(){
-  var s=APP.s;
-  if(APP.role!=='team'||!s||s.stageDone<0||s.phase==='end'){$hud.innerHTML='';return;}
-  var fc=forecast(s),now=s.period>=6?'Year end':PERIODS[Math.min(s.period,5)];
+  var s=APP.s;if(APP.role!=='team'||!s||s.stageDone<0||s.phase==='end'){$hud.innerHTML='';return;}
+  var lm=lateMonths(s),left=s.budget-s.spent,fc=forecast(s),pct=s.S?Math.round(100*s.done/s.S):0;
   var dl=s.phased?'Core 1 Nov, rest 1 Jan':(s.deadline===5?'Deadline 1 Nov 2027':'Deadline 1 Jan 2028');
-  var pct=s.S?Math.round(100*s.done/s.S):0,h=heat(s),stars='';for(var i=1;i<=5;i++)stars+=i<=h?'★':'<span class="off">★</span>';
-  var done=s.done>=s.S;
   $hud.innerHTML='<div class="hud" role="region" aria-label="Project status"><div class="hud-in">'+
-   '<div><div class="hk">'+esc(now)+'</div><div class="hv">'+(done?'Build complete':'Finish: '+monthLabel(fc.finishM))+'</div><div class="hs '+(fc.late&&!done?'warn':'')+'">'+esc(dl)+(fc.late&&!done?', late':'')+'</div></div>'+
-   '<div><div class="hk">Scope built</div><div class="hv">'+Math.round(s.done)+' / '+s.S+' pts</div><div class="bar"><i style="width:'+pct+'%"></i></div></div>'+
-   '<div><div class="hk">Crew of '+s.n+', morale</div><div class="hv">'+moraleWord(s.M)+'</div><div class="bar health"><i style="width:'+s.M+'%"></i></div></div>'+
-   '<div><div class="hk">Quality, security</div><div class="hv" style="color:var(--pink)">? ? ?</div><div class="hs">'+esc(qualitySignal(s.Q))+'</div></div>'+
-   '<div><div class="money">'+money(s.budget-s.spent)+'</div><div class="stars" title="Heat: pressure from the CEO and investors">'+stars+'</div></div>'+
+   '<div><div class="hk">⏱ Time</div><div class="hv '+(lm?'bad':'ok')+'">'+(s.done>=s.S?'Build complete':lm?lm+' month'+(lm>1?'s':'')+' late':'On track')+'</div><div class="hs">'+esc(dl)+'</div></div>'+
+   '<div><div class="hk">💰 Money left</div><div class="hv '+(fc.costAtEnd>s.budget?'bad':'ok')+'">'+money(left)+'</div><div class="hs">'+(fc.costAtEnd>s.budget?'Heading over budget':'Within budget')+'</div></div>'+
+   '<div><div class="hk">📦 Scope built</div><div class="hv">'+Math.round(s.done)+' / '+s.S+' pts</div><div class="bar"><i style="width:'+pct+'%"></i></div></div>'+
+   '<div><div class="hk">🙂 Team mood ('+s.n+' people)</div><div class="hv">'+moodWord(s.M)+'</div><div class="bar health"><i style="width:'+s.M+'%"></i></div></div>'+
+   '<div class="hid" title="Revealed at the end">Quality and security: hidden</div>'+
   '</div></div>';
 }
 
-/* ---------- Dice ---------- */
-function d20Svg(){return '<svg viewBox="0 0 100 100" aria-hidden="true"><polygon points="50,3 93,27 93,73 50,97 7,73 7,27" fill="#2a1460" stroke="#2de2e6" stroke-width="3"/><polygon points="50,22 78,70 22,70" fill="none" stroke="#ff3ea5" stroke-width="2"/><path d="M50 3 L50 22 M93 27 L78 70 M7 27 L22 70 M93 73 L78 70 M7 73 L22 70 M50 97 L50 70" stroke="#2de2e6" stroke-width="1.2" opacity=".6"/></svg>';}
-function diceHtml(roll,id){var t=roll.r+roll.mod;
-  return '<div class="dice"><div class="d20" id="'+id+'">'+d20Svg()+'<div class="n">'+roll.r+'</div></div><div><div class="small muted">'+esc(roll.label)+': d20 '+(roll.mod>=0?'+ ':'− ')+Math.abs(roll.mod)+', need '+roll.dc+'</div>'+
-  '<div style="font-size:1.35rem" class="'+(roll.ok?'ok':'bad')+'">'+roll.r+(roll.mod>=0?' + ':' − ')+Math.abs(roll.mod)+' = '+t+'. '+(roll.r===20?'Natural 20! ':roll.r===1?'Natural 1. ':'')+(roll.ok?'Success':'Failure')+'</div></div></div>';}
+/* ---------- Dice with odds ---------- */
+function d20Svg(){return '<svg viewBox="0 0 100 100" aria-hidden="true"><polygon points="50,3 93,27 93,73 50,97 7,73 7,27" fill="#2a1460" stroke="#2de2e6" stroke-width="3"/><polygon points="50,22 78,70 22,70" fill="none" stroke="#ff3ea5" stroke-width="2"/></svg>';}
+function diceHtml(roll,id){var pct=oddsPct(roll.mod,roll.dc);
+  return '<div class="dice"><div class="d20" id="'+id+'">'+d20Svg()+'<div class="n">'+roll.r+'</div></div><div><div class="small muted">'+esc(roll.label)+': your odds were</div><div class="odds">'+pct+'%</div><div style="font-size:1.3rem" class="'+(roll.ok?'ok':'bad')+'">'+(roll.ok?'✅ It worked':'❌ It didn’t work')+'</div></div></div>';}
 function animateDice(id,final){var el=document.getElementById(id);if(!el||reduceMotion())return;var n=el.querySelector('.n'),i=0;el.classList.add('rolling');
   var t=setInterval(function(){n.textContent=1+Math.floor(Math.random()*20);if(++i>14){clearInterval(t);n.textContent=final;el.classList.remove('rolling');}},70);}
 
 /* ---------- Modal ---------- */
-function confirmModal(title,body,ok,fn){
-  $modal.innerHTML='<div class="modal" role="dialog" aria-modal="true" aria-labelledby="mt"><div class="box"><h3 id="mt">'+esc(title)+'</h3><p>'+body+'</p><div class="row" style="justify-content:flex-end;margin-top:14px"><button class="btn ghost" data-act="modal-cancel">Go back</button><button class="btn" data-act="modal-ok">'+esc(ok)+'</button></div></div></div>';
-  APP.modalOk=fn;var b=$modal.querySelector('[data-act="modal-ok"]');if(b)b.focus();
-}
+function confirmModal(title,body,ok,fn){$modal.innerHTML='<div class="modal" role="dialog" aria-modal="true" aria-labelledby="mt"><div class="box"><h3 id="mt">'+esc(title)+'</h3><p>'+body+'</p><div class="row" style="justify-content:flex-end;margin-top:14px"><button class="btn ghost" data-act="modal-cancel">Go back</button><button class="btn" data-act="modal-ok">'+esc(ok)+'</button></div></div></div>';APP.modalOk=fn;var b=$modal.querySelector('[data-act="modal-ok"]');if(b)b.focus();}
 function closeModal(){$modal.innerHTML='';APP.modalOk=null;}
 
 /* ---------- Landing ---------- */
 function renderLanding(){
   var t='';for(var i=1;i<=8;i++)t+='<a class="btn ghost" href="#team'+i+'" data-act="goto" data-to="team'+i+'">Crew '+i+'</a>';
-  $app.innerHTML=artHtml('hero',['Neo-Colombo, 2027.','One flying car. One deadline.','Your crew writes the code.'])+
-    '<h1 class="neon" style="margin-top:22px">Project Liftoff</h1><p class="story">A software project simulation. Every decision is final.</p>'+
-    '<h2 class="h">Join as a crew</h2><div class="row">'+t+'</div><h2 class="h">Run the game</h2><div class="row"><a class="btn" href="#host" data-act="goto" data-to="host">Game Master console</a></div>';
+  $app.innerHTML=artHtml('hero','One flying car. One deadline.')+'<h1 class="neon" style="margin-top:20px">Project Liftoff</h1><p class="sit">A software project simulation. Every decision is final.</p><div class="lbl">Join as a crew</div><div class="row">'+t+'</div><div class="lbl">Run the game</div><div class="row"><a class="btn" href="#host" data-act="goto" data-to="host">Game Master console</a></div>';
 }
 
-/* ---------- Team rendering ---------- */
-function syncBanner(){return APP.syncMsg==='fail'?'<div class="banner">No live link to the Game Master. You’re playing offline: decisions apply as soon as you lock them.</div>':'';}
-function renderTeam(){
-  var s=APP.s;renderHud();
-  if(s.phase==='title')return renderTitle();
-  if(s.phase==='party')return renderParty();
-  if(s.phase==='outcome')return renderOutcome();
-  if(s.phase==='end')return renderEnd();
-  return renderPlay();
-}
+/* ---------- Team screens ---------- */
+function syncBanner(){return APP.syncMsg==='fail'?'<div class="banner">No live link to the Game Master. You’re playing offline.</div>':'';}
+function renderTeam(){var s=APP.s;renderHud();if(s.phase==='title')return renderTitle();if(s.phase==='party')return renderRoles();if(s.phase==='outcome')return renderOutcome();if(s.phase==='end')return renderEnd();return renderPlay();}
 function renderTitle(){
-  $app.innerHTML=syncBanner()+artHtml('hero',['Neo-Colombo, 2027.','Volta Aeromotive is building a flying car.','Your crew writes every line of its code.'],'Crew '+APP.team)+
-   '<h1 class="neon" style="margin-top:22px">Project Liftoff</h1>'+
-   '<p class="story">$12M. One year. A CEO who keeps having ideas. Every decision you lock is final, and nobody gets everything.</p>'+
-   '<div class="panel" style="max-width:520px;margin-top:16px"><div class="field"><label for="tn"><b>Name your crew</b></label><input id="tn" maxlength="28" placeholder="Crew '+APP.team+'" value="'+esc(APP.s.name)+'"></div><button class="btn big" data-act="begin">Join the job</button></div>';
+  $app.innerHTML=syncBanner()+artHtml('hero','Crew '+APP.team+': welcome to Volta')+'<h1 class="neon" style="margin-top:20px">Project Liftoff</h1>'+
+   '<p class="sit">You’re the software team building a flying car. $12M, one year, and every decision is final.</p>'+
+   '<div class="panel" style="max-width:520px;margin-top:14px"><div class="field"><label for="tn"><b>Name your crew</b></label><input id="tn" maxlength="24" placeholder="Crew '+APP.team+'" value="'+esc(APP.s.name)+'"></div><button class="btn big" data-act="begin">Join</button></div>';
 }
-function renderParty(){
-  var c=ROLES.map(function(r){return '<div class="msg"><div class="av">'+r.sigil+'</div><div><div class="nm">'+esc(r.title)+' <span>'+esc(r.role)+'</span></div><div class="bb">'+esc(r.job)+'</div></div></div>';}).join('');
-  $app.innerHTML='<p class="sub">Before the job</p><h1 class="neon">Assemble your crew</h1>'+
-   '<div class="mission"><div class="phone"><div class="top"><span>Neo-Colombo</span><span>📶 🔋</span></div><div class="title">Crew roles</div><div class="msgs">'+c+'</div></div>'+
-   '<div><p class="story">Give each person one role. At every mission, your crew chat lights up: <b>each role reads their own message aloud</b>, then the crew decides. The Planner breaks ties.</p>'+
-   '<p class="story">The Game Master controls the clock. You’ll get time to read, then a short window to vote. Miss the window and the CEO decides for you.</p>'+
-   '<button class="btn big" data-act="party-ready">Crew assembled</button></div></div>';
+function renderRoles(){
+  var c=ROLES.map(function(r){return '<div class="role'+(r.opt?' opt':'')+'"><div class="ri">'+r.icon+'</div><b>'+esc(r.title)+'</b><span>'+esc(r.job)+'</span>'+(r.opt?'<div class="small" style="margin-top:6px;color:var(--gold)">Only if you have a '+r.opt+'. Otherwise the '+esc(roleOf(r.cover).title)+' covers it.</div>':'')+'</div>';}).join('');
+  $app.innerHTML='<h1 class="neon">Pick your roles</h1><p class="sit">Give each person one role. When a role speaks on screen, that person reads it aloud. The Project Manager makes the final call.</p><div class="roles">'+c+'</div><button class="btn big" data-act="party-ready">Roles assigned</button>';
 }
-function phoneHtml(stage){
-  var adv=STAGES[stage].advice;if(!adv)return '';
-  var m=ROLES.map(function(r,i){return '<div class="msg" style="animation-delay:'+(i*0.25)+'s"><div class="av">'+r.sigil+'</div><div><div class="nm">'+esc(r.title)+' <span>'+esc(r.role)+'</span></div><div class="bb">'+esc(adv[r.k])+'</div></div></div>';}).join('');
-  return '<div class="phone"><div class="top"><span>'+esc(STAGES[stage].when)+'</span><span>📶 🔋</span></div><div class="title">Crew chat, 6 new messages</div><div class="msgs">'+m+'</div></div>';
+function voicesHtml(stage){var v=STAGES[stage].voices||[];if(!v.length)return '';
+  return '<div class="voices">'+v.map(function(x){var r=roleOf(x.r);return '<div class="voice"><div class="vr">'+r.icon+' '+esc(roleReader(x.r))+'</div><div class="vt">“'+esc(x.t)+'”</div></div>';}).join('')+'</div>';}
+function statusHtml(mode){
+  if(mode==='brief')return '<div class="status"><span class="pill" style="color:var(--gold)">Briefing</span><span>Read it aloud. <b>Voting opens soon.</b></span></div>';
+  if(!APP.sync)return '';
+  var rem=voteRemaining();
+  return '<div class="status"><span class="pill" style="color:var(--money)">Voting open</span><span class="cd'+(rem<=15?' hot':'')+'" id="cd">'+fmtSecs(rem)+'</span><span>Pick one and lock it in.</span></div>';
 }
-function gate(){ // returns {mode, K, P}
-  if(!APP.sync)return {mode:'free'};
-  return {mode:'live',K:APP.control.stage,P:APP.control.phase};
-}
-function voteRemaining(){
-  var c=APP.control;if(!c.voteSecs)return Infinity;
-  var key=c.stage+'|'+c.voteAt;
-  if(!APP.voteSeen||APP.voteSeen.key!==key)APP.voteSeen={key:key,t:Date.now()};
-  return Math.max(0,c.voteSecs-(Date.now()-APP.voteSeen.t)/1000);
-}
-function fmtSecs(x){if(x===Infinity)return '∞';x=Math.ceil(x);return Math.floor(x/60)+':'+String(x%60).padStart(2,'0');}
 function renderPlay(){
   var s=APP.s,next=s.stageDone+1;
   if(next>7){s.phase='end';return renderTeam();}
-  var g=gate();
-  if(g.mode==='free'){
-    if(s.pending){resolveStage(next,false);return;}
-    return renderMissionFor(next,'open');
-  }
-  if(g.K<next)return waitingScreen(next);
-  if(g.K>next||g.P==='reveal'){resolveStage(next,!(s.pending&&s.pending.stage===next));return;}
-  if(g.P==='brief')return renderMissionFor(next,'brief');
+  if(!APP.sync){if(s.pending){resolveStage(next,false);return;}return renderMission(next,'open');}
+  var K=APP.control.stage,P=APP.control.phase;
+  if(K<next)return standby(next);
+  if(K>next||P==='reveal'){resolveStage(next,!(s.pending&&s.pending.stage===next));return;}
+  if(P==='brief')return renderMission(next,'brief');
   if(s.pending&&s.pending.stage===next)return lockedScreen(next);
-  if(g.P==='closed'||voteRemaining()<=0)return timeUpScreen(next);
-  return renderMissionFor(next,'open');
+  if(P==='closed'||voteRemaining()<=0)return timeUpScreen(next);
+  return renderMission(next,'open');
 }
-function renderMissionFor(stage,mode){if(stage===0)return renderDeal(mode);if(stage===7)return renderLaunch(mode);return renderScene(stage,mode);}
-function waitingScreen(next){
-  var st=STAGES[next];
-  $app.innerHTML=syncBanner()+artHtml(next,null,missionLabel(next)+': loading')+
-   '<div class="center" style="margin-top:26px"><p class="sub">'+missionLabel(next)+'</p><h1 class="neon">'+esc(st.name)+'</h1><p class="story" style="margin:10px auto">Stand by. The Game Master opens the next mission.</p><p class="small muted">This screen updates by itself.</p></div>';
-}
-function statusStrip(mode){
-  if(mode==='brief')return '<div class="strip"><span class="pill" style="color:var(--gold)">Briefing</span><span>Read the scene and your crew chat aloud. <b>Voting opens when the Game Master says so.</b></span></div>';
-  if(!APP.sync)return '';
-  var rem=voteRemaining();
-  return '<div class="strip"><span class="pill" style="color:var(--money)">Voting open</span><span class="cd'+(rem<=15?' hot':'')+'" id="cd">'+fmtSecs(rem)+'</span><span>Lock in before the clock runs out, or the CEO decides for you.</span></div>';
-}
+function renderMission(stage,mode){if(stage===0)return renderDeal(mode);if(stage===7)return renderLaunch(mode);return renderScene(stage,mode);}
+function standby(next){$app.innerHTML=syncBanner()+artHtml(next,'Stand by…',missionLabel(next))+'<p class="sit center" style="margin:20px auto">The Game Master opens the next mission.</p>';}
 function lockedScreen(stage){
-  var s=APP.s,p=s.pending,label=s.picks[String(stage)]||'Locked in',extra='';
-  if(stage===7){var o=finalize(s,seed(7));extra=diceHtml(o.roll,'pd')+'<p class="story">'+esc(o.roll.text)+'</p>';}
-  $app.innerHTML=syncBanner()+artHtml(stage,null,missionLabel(stage))+
-   '<div class="center" style="margin-top:24px"><div class="big-emoji">🔒</div><h1 class="neon">Locked in</h1><p class="story" style="margin:10px auto"><b>'+esc(label)+'</b></p>'+extra+
-   '<p class="muted">Waiting for the Game Master to reveal what happens next.</p></div>';
+  var s=APP.s,extra='';
+  if(stage===7){var o=finalize(s,seed(7));extra=diceHtml(o.roll,'pd');}
+  $app.innerHTML=syncBanner()+artHtml(stage,'🔒 Locked in',missionLabel(stage))+'<div class="center" style="margin-top:18px"><p class="sit" style="margin:0 auto"><b>'+esc(s.picks[String(stage)]||'')+'</b></p>'+extra+'<p class="muted">Waiting for the reveal.</p></div>';
 }
-function timeUpScreen(stage){
-  $app.innerHTML=syncBanner()+artHtml(stage,null,missionLabel(stage))+
-   '<div class="center" style="margin-top:24px"><div class="big-emoji">⏰</div><h1 class="neon">Time’s up</h1><p class="story" style="margin:10px auto">Your crew didn’t lock in. <b>The CEO is deciding for you.</b> You’ll see what he chose at the reveal.</p></div>';
-}
+function timeUpScreen(stage){$app.innerHTML=syncBanner()+artHtml(stage,'⏰ Time’s up',missionLabel(stage))+'<p class="sit center" style="margin:20px auto">You didn’t lock in. <b>The CEO is deciding for you.</b></p>';}
 
-/* Deal (planning) */
+/* Deal */
 function defaultPlan(){return {kind:'plan',features:FEATURES.filter(function(f){return f.must;}).map(function(f){return f.id;}),n:18,test:'standard'};}
-function planForecast(sel){var S=scopePts(sel.features),cap=sel.n*sizeFactor(sel.n)*TEST[sel.test].f,need=S/cap,fm=Math.ceil(need*2-1e-9),cost=sel.n*RATE*need;
-  return {S:S,cap:cap,fm:fm,cost:cost,late:fm>12,over:cost>BUDGET,cap6:cap*6};}
+function planForecast(sel){var S=scopePts(sel.features),cap=sel.n*sizeFactor(sel.n)*TEST[sel.test].f,need=S/cap,fm=Math.ceil(need*2-1e-9),cost=sel.n*RATE*Math.min(need,99);
+  return {S:S,cap:cap,fm:fm,cost:cost,late:fm>12,lateBy:Math.max(0,fm-12),over:cost>BUDGET};}
 function renderDeal(mode){
   if(!APP.sel||APP.sel.kind!=='plan')APP.sel=defaultPlan();
   var sel=APP.sel,lock=mode==='brief';
-  var feats=FEATURES.map(function(f){var on=sel.features.indexOf(f.id)>=0;
-    return '<button class="fc" aria-pressed="'+on+'" data-act="feat" data-id="'+f.id+'"><div class="top"><b>'+f.sigil+' '+esc(f.name)+'</b><span class="pts">'+f.pts+'</span></div><p>'+esc(f.desc)+'</p><div class="meta">'+(f.must?'<span class="tag">Required</span> ':'')+'Risk '+f.risk+(f.val?', value '+'★'.repeat(f.val):'')+'</div></button>';}).join('');
-  var tests=Object.keys(TEST).map(function(k){var t=TEST[k];return '<button class="fc" aria-pressed="'+(sel.test===k)+'" data-act="test" data-id="'+k+'"><div class="top"><b>'+t.sigil+' '+t.label+'</b><span class="pts">'+Math.round(t.f*100)+'% speed</span></div><p>'+esc(t.desc)+'</p></button>';}).join('');
-  $app.innerHTML=syncBanner()+artHtml(0,STAGES[0].panels,missionLabel(0))+tickerHtml(STAGES[0].news)+
-   '<p class="sub">December 2026</p><h1 class="neon">The Deal</h1>'+statusStrip(mode)+
-   '<div class="mission"><div>'+phoneHtml(0)+'</div><div class="grid2" style="grid-template-columns:minmax(0,1fr)"><fieldset'+(lock?' disabled':'')+'>'+
-    '<h2 class="h" style="margin-top:0">1. Pick your scope (points of work)</h2><div class="feat">'+feats+'</div>'+
-    '<h2 class="h">2. Hire your crew</h2><div class="panel"><div class="row" style="justify-content:space-between;align-items:end"><div><div class="bign" id="nval">'+sel.n+'</div><div class="small muted">engineers at $0.1M each per two months</div></div></div>'+
-     '<input class="range" type="range" min="10" max="30" value="'+sel.n+'" id="nrange" aria-label="Crew size"><div class="small muted">Bigger crews spend more time coordinating. Past 16 people, each extra person adds less.</div></div>'+
-    '<h2 class="h">3. How much do you test?</h2><div class="tests">'+tests+'</div></fieldset>'+
-    '<div class="panel" id="fcast" style="margin-top:16px"></div></div></div>';
-  renderPlanForecast(mode);
+  function chip(f){var on=sel.features.indexOf(f.id)>=0;return '<button class="fchip" aria-pressed="'+on+'" data-act="feat" data-id="'+f.id+'"'+(lock?' disabled':'')+'><span class="ic">'+f.sigil+'</span><span><span class="nm">'+esc(f.name)+'</span><br><span class="ds">'+esc(f.desc)+'</span></span><span class="pt">'+f.pts+'</span></button>';}
+  var req=FEATURES.filter(function(f){return f.must;}).map(chip).join(''),opt=FEATURES.filter(function(f){return !f.must;}).map(chip).join('');
+  var tests=Object.keys(TEST).map(function(k){var t=TEST[k];return '<button data-act="test" data-id="'+k+'" aria-pressed="'+(sel.test===k)+'"'+(lock?' disabled':'')+'><b>'+t.sigil+' '+t.label+'</b><small>'+Math.round(t.f*100)+'% build speed</small></button>';}).join('');
+  $app.innerHTML=syncBanner()+statusHtml(mode)+artHtml(0,STAGES[0].headline,'Mission 0')+'<p class="sit">'+esc(STAGES[0].situation)+'</p>'+voicesHtml(0)+
+   '<div class="lbl">1. Scope (points of work)</div><div class="small muted" style="margin-bottom:6px">Required</div><div class="fchips">'+req+'</div><div class="small muted" style="margin:10px 0 6px">Optional: tap to add</div><div class="fchips">'+opt+'</div>'+
+   '<div class="lbl">2. Team size: <span id="nval">'+sel.n+'</span> engineers</div><input class="range" type="range" min="10" max="30" value="'+sel.n+'" id="nrange" aria-label="Team size"'+(lock?' disabled':'')+'><div class="small muted">Each engineer costs $0.1M every two months. Bigger teams coordinate more and add less per person.</div>'+
+   '<div class="lbl">3. Testing</div><div class="seg">'+tests+'</div><div id="fit"></div>'+
+   (lock?'':'<div class="lockbar"><button class="btn big" data-act="seal-plan">Lock in the Deal</button><span class="small muted">This can’t be changed.</span></div>');
+  APP.dealLock=lock;renderFit();
 }
-function renderPlanForecast(mode){
-  var el=document.getElementById('fcast');if(!el)return;var f=planForecast(APP.sel);mode=mode||APP.dealMode;APP.dealMode=mode;
-  el.innerHTML='<b>Your forecast</b> <span class="small muted">(assumes nothing goes wrong)</span>'+
-   '<div class="fl-row"><span>Scope</span><b>'+f.S+' pts</b></div><div class="fl-row"><span>Crew output</span><b>'+f.cap.toFixed(1)+' pts / 2 months</b></div>'+
-   '<div class="fl-row"><span>Capacity by deadline</span><b>'+Math.round(f.cap6)+' pts</b></div>'+
-   '<div class="fl-row"><span>Forecast finish</span><b class="'+(f.late?'bad':'ok')+'">'+monthLabel(f.fm)+'</b></div>'+
-   '<div class="fl-row"><span>Forecast cost</span><b class="'+(f.over?'bad':'ok')+'">'+money(f.cost)+' of $12.0M</b></div>'+
-   '<button class="btn big" style="width:100%;margin-top:10px" data-act="seal-plan"'+(mode==='brief'?' disabled':'')+'>Lock in the Deal</button>';
-}
+function renderFit(){var el=document.getElementById('fit');if(!el)return;var f=planForecast(APP.sel),good=!f.late&&!f.over;
+  el.innerHTML='<div class="fit '+(good?'good':'bad')+'"><span class="big">'+(good?'✅ Fits':'❌ Doesn’t fit')+'</span><span>'+f.S+' pts, finish <b class="'+(f.late?'bad':'ok')+'">'+monthLabel(f.fm)+'</b>'+(f.late?' ('+f.lateBy+' mo late)':'')+'</span><span>Cost <b class="'+(f.over?'bad':'ok')+'">'+money(f.cost)+'</b> of $12.0M</span><span class="small muted">If nothing goes wrong.</span></div>';}
 
 /* Scene */
 function renderScene(stage,mode){
@@ -790,230 +774,205 @@ function renderScene(stage,mode){
   if(!APP.sel||APP.sel.kind!=='scene'||APP.sel.stage!==stage)APP.sel={kind:'scene',stage:stage,choice:null,drop:[]};
   var sel=APP.sel;
   var cards=list.map(function(c){var reason=c.req?c.req(s):null,on=sel.choice===c.id;
-    return '<button class="cc'+(lock?' lockedv':'')+'" aria-pressed="'+on+'" data-act="pick" data-id="'+c.id+'"'+(reason?' disabled':'')+(lock?' aria-disabled="true"':'')+'><span class="lt">'+c.id+'</span><div class="sig">'+c.sigil+'</div><h3>'+esc(c.title)+'</h3><p class="fl">'+esc(c.flavor)+'</p>'+
-    (reason?'<p class="lockr">'+esc(reason)+'</p>':'')+'<ul>'+c.fx.map(function(x){return '<li>▸ '+esc(x)+'</li>';}).join('')+'</ul></button>';}).join('');
+    return '<button class="cc'+(lock?' lockedv':'')+'" aria-pressed="'+on+'" data-act="pick" data-id="'+c.id+'"'+(reason?' disabled':'')+(lock?' aria-disabled="true"':'')+'><span class="lt">'+c.id+'</span><div class="sig">'+c.sigil+'</div><h3>'+esc(c.title)+'</h3>'+(reason?'<p class="lockr">'+esc(reason)+'</p>':'')+'<div class="tl">'+esc(TL[stage][c.id])+'</div></button>';}).join('');
   var ch=list.filter(function(c){return c.id===sel.choice;})[0],picker='';
-  if(ch&&ch.drop&&!lock){
-    var opts=optionalIn(s).map(function(id){var f=fById(id);return '<button class="chip" aria-pressed="'+(sel.drop.indexOf(id)>=0)+'" data-act="drop" data-id="'+id+'">'+f.sigil+' '+esc(f.name)+' ('+f.pts+')</button>';}).join('');
-    picker='<div class="picker"><b>✂️ '+(ch.drop.minPts?'Cut at least '+ch.drop.minPts+' points':'Cut at least one feature')+'</b> <span class="small muted">(selected '+scopePts(sel.drop)+' pts)</span><div class="chips">'+opts+'</div></div>';
-  }
-  $app.innerHTML=syncBanner()+artHtml(stage,st.panels,st.when)+tickerHtml(st.news)+
-   '<p class="sub">'+missionLabel(stage)+'</p><h1 class="neon">'+esc(st.name)+'</h1>'+statusStrip(mode)+
-   '<div class="mission"><div>'+phoneHtml(stage)+'</div><div><div class="cards">'+cards+'</div>'+picker+
-   (lock?'':'<div class="row" style="margin-top:14px"><button class="btn big" data-act="seal-scene"'+(sealReady()?'':' disabled')+'>Lock it in</button><span class="small muted">Locked decisions can’t be changed.</span></div>')+'</div></div>';
+  if(ch&&ch.drop&&!lock){picker='<div class="picker"><b>✂️ '+(ch.drop.minPts?'Pick features worth at least '+ch.drop.minPts+' points to cut':'Pick a feature to cut')+'</b> <span class="small muted">(selected '+scopePts(sel.drop)+' pts)</span><div class="chips">'+optionalIn(s).map(function(id){var f=fById(id);return '<button class="chip" aria-pressed="'+(sel.drop.indexOf(id)>=0)+'" data-act="drop" data-id="'+id+'">'+f.sigil+' '+esc(f.name)+' ('+f.pts+')</button>';}).join('')+'</div></div>';}
+  $app.innerHTML=syncBanner()+statusHtml(mode)+artHtml(stage,st.headline,missionLabel(stage)+', '+st.when)+'<p class="sit">'+esc(st.situation)+'</p>'+voicesHtml(stage)+
+   '<div class="cards">'+cards+'</div>'+picker+(lock?'':'<div class="lockbar"><button class="btn big" data-act="seal-scene"'+(sealReady()?'':' disabled')+'>Lock it in</button><span class="small muted">This can’t be changed.</span></div>');
 }
-function sealReady(){var sel=APP.sel;if(!sel||!sel.choice)return false;var ch=CHOICES[sel.stage].filter(function(c){return c.id===sel.choice;})[0];
-  if(!ch||!ch.drop)return true;if(ch.drop.minPts)return scopePts(sel.drop)>=ch.drop.minPts;return sel.drop.length>=1;}
+function sealReady(){var sel=APP.sel;if(!sel||!sel.choice)return false;var ch=CHOICES[sel.stage].filter(function(c){return c.id===sel.choice;})[0];if(!ch||!ch.drop)return true;if(ch.drop.minPts)return scopePts(sel.drop)>=ch.drop.minPts;return sel.drop.length>=1;}
 
 /* Launch */
 function renderLaunch(mode){
-  var s=APP.s,o=computeOutcome(s),st=STAGES[7];
-  $app.innerHTML=syncBanner()+artHtml(7,st.panels,'Launch night')+tickerHtml(st.news)+
-   '<p class="sub">Final mission</p><h1 class="neon">Launch Night</h1>'+statusStrip(mode)+
-   '<p class="story">You built '+Math.round(s.done)+' of '+s.S+' points'+(o.onTime?'. The software is ready.':', and you’re '+o.monthsLate+' month'+(o.monthsLate>1?'s':'')+' behind. The demo goes ahead anyway.')+' Your hidden quality and security set the odds.</p>'+
-   '<div class="dice"><div class="d20" id="ld">'+d20Svg()+'<div class="n">?</div></div>'+(mode==='brief'?'<span class="muted">The roll unlocks when the Game Master opens it.</span>':'<button class="btn big" data-act="roll-launch">Roll for the demo</button>')+'</div>';
+  var s=APP.s,o=computeOutcome(s),pre=launchRoll(s,seed(7)),pct=oddsPct(pre.mod,pre.dc);
+  $app.innerHTML=syncBanner()+statusHtml(mode)+artHtml(7,STAGES[7].headline,'Final mission')+
+   '<p class="sit">'+(o.onTime?'Your software is ready.':'You’re '+o.monthsLate+' month'+(o.monthsLate>1?'s':'')+' behind, but the demo goes ahead.')+' Your hidden quality and security decide your odds.</p>'+
+   '<div class="dice"><div class="d20" id="ld">'+d20Svg()+'<div class="n">?</div></div><div><div class="small muted">Chance of a smooth demo</div><div class="odds">'+pct+'%</div></div>'+(mode==='brief'?'':'<button class="btn big" data-act="roll-launch">Roll for the demo</button>')+'</div>';
 }
 
 /* Outcome */
+function snapshot(s){return {S:s.S,left:s.budget-s.spent,M:s.M,late:s.stageDone>=0&&s.S?lateMonths(s):0,n:s.n,done:s.done};}
+function deltaChips(a,b){var out=[];
+  if(b.S!==a.S)out.push([b.S>a.S?'down':'up','📦 Scope '+(b.S>a.S?'+':'')+(b.S-a.S)+' pts']);
+  var dm=Math.round((b.left-a.left)*10)/10;if(Math.abs(dm)>=0.05)out.push(['','💰 '+money(Math.abs(dm))+(dm<0?' spent':' back')]);
+  if(Math.abs(b.M-a.M)>=3)out.push([b.M<a.M?'down':'up','🙂 Mood '+(b.M<a.M?'↓':'↑')]);
+  if(b.n!==a.n)out.push(['', '👥 Team '+a.n+' → '+b.n]);
+  if(b.late!==a.late)out.push([b.late>a.late?'down':'up','⏱ '+(b.late?b.late+' mo late':'Back on track')]);
+  out.push(['','🔨 Built '+Math.round(b.done-a.done)+' pts']);
+  return out.map(function(x){return '<span class="delta '+x[0]+'">'+esc(x[1])+'</span>';}).join('');}
 function renderOutcome(){
   var s=APP.s,o=s.lastOutcome;if(!o){s.phase='play';return renderTeam();}
-  var reps=(o.reports||[]).map(function(r){return '<div class="rep"><b>'+esc(r.label)+':</b> '+(r.idle?'work complete, the crew polishes and waits.':'built '+r.cap.toFixed(1)+' points. '+Math.round(r.done)+' of '+r.S+' done. Forecast finish <b class="'+(r.late?'bad':'ok')+'">'+esc(r.finish)+'</b>.')+'</div>';}).join('');
-  $app.innerHTML=artHtml(o.stage,null,missionLabel(o.stage))+
-   (o.auto?'<div class="banner" style="margin-top:16px">⏰ Your crew didn’t lock in. <b>The CEO chose for you</b>, and the crew’s morale took a hit.</div>':'')+
-   '<div class="banner-x">'+esc(o.title)+'</div>'+(o.roll?diceHtml(o.roll,'od'):'')+
-   '<p class="story">'+esc(o.text)+'</p>'+(reps?'<h2 class="h">Two months pass</h2><div class="report">'+reps+'</div>':'')+
-   (APP.sync?'<div class="strip"><span class="pill" style="color:var(--gold)">Stand by</span><span>The Game Master moves every crew to the next mission together.</span></div>':'<button class="btn big" data-act="continue" style="margin-top:10px">'+(s.stageDone>=6?'On to launch night':'Continue')+'</button>');
+  $app.innerHTML=artHtml(o.stage,o.title,missionLabel(o.stage))+(o.auto?'<div class="banner" style="margin-top:14px">⏰ You didn’t lock in. <b>The CEO chose for you</b>, and the team’s mood dropped.</div>':'')+
+   (o.roll?diceHtml(o.roll,'od'):'')+'<p class="sit">'+esc(o.text)+'</p>'+(o.deltas?'<div class="deltas">'+o.deltas+'</div>':'')+
+   (APP.sync?'<div class="status"><span class="pill" style="color:var(--gold)">Stand by</span><span>The Game Master moves everyone on together.</span></div>':'<button class="btn big" data-act="continue" style="margin-top:10px">Continue</button>');
   if(o.roll&&!o.rollShown){o.rollShown=true;LS.set(teamKey(),JSON.stringify(s));animateDice('od',o.roll.r);}
 }
 
 /* End */
 function renderEnd(){
   var s=APP.s,o=s.result,e=ENDINGS[o.ending];
-  var log=s.log.map(function(l){return '<li><b>'+esc(l.stage)+':</b> '+esc(l.pick)+'</li>';}).join('');
   function st(k,v,g){return '<div class="st"><div class="k">'+k+'</div><div class="v '+(g?'ok':'bad')+'">'+esc(v)+'</div></div>';}
-  $app.innerHTML=artHtml(7,null,s.name)+'<div class="center" style="margin-top:18px"><div class="big-emoji">'+e.sigil+'</div><div class="banner-x">'+esc(e.title)+'</div></div>'+
-   diceHtml(o.roll,'ed')+'<p class="story">'+esc(o.roll.text)+' '+esc(e.text)+'</p>'+
-   '<h2 class="h">The hidden truth</h2><div class="stats">'+
-   st('Time',o.onTime?'On time':o.monthsLate+' mo late',o.onTime)+st('Cost',money(o.cost)+' of '+money(o.budget),o.over<=0)+st('Customer value',o.value+' / '+o.valueMax,o.value>=o.valueMax/2)+
-   st('Quality',o.Q+' / 100',o.Q>=60)+st('Security',o.Sec+' / 100',o.Sec>=60)+st('Morale',o.M+' / 100',o.M>=50)+st('Project health',o.score+' / 100',o.score>=60)+'</div>'+
-   '<div class="panel"><b>In the real world</b><p class="story" style="margin:6px 0 0">'+esc(e.real)+'</p></div>'+
-   '<h2 class="h">Your run</h2><ul class="log">'+log+'</ul><p class="small muted" style="margin-top:16px">Result code: <span class="code">'+esc(o.code)+'</span></p>';
+  $app.innerHTML=artHtml(7,e.sigil+' '+e.title,s.name)+diceHtml(o.roll,'ed')+'<p class="sit">'+esc(o.roll.text)+'</p>'+
+   '<div class="stats">'+st('⏱ Time',o.onTime?'On time':o.monthsLate+' mo late',o.onTime)+st('💰 Cost',money(o.cost)+' of '+money(o.budget),o.over<=0)+st('📦 Customer value',o.value+' / '+o.valueMax,o.value>=o.valueMax/2)+
+   st('🧪 Quality',o.Q+' / 100',o.Q>=60)+st('🛡️ Security',o.Sec+' / 100',o.Sec>=60)+st('🙂 Mood',o.M+' / 100',o.M>=50)+st('🏅 Project health',o.score+' / 100',o.score>=60)+'</div>'+
+   '<div class="panel"><b>In the real world</b><p style="margin:6px 0 0">'+esc(e.real)+'</p></div>'+
+   '<details style="margin-top:14px"><summary><b>Your decisions</b></summary><ul class="log">'+s.log.map(function(l){return '<li><b>'+esc(l.stage)+':</b> '+esc(l.pick)+'</li>';}).join('')+'</ul></details>';
 }
 
 /* ---------- Team actions ---------- */
 function seed(stage){return APP.session+'|team'+APP.team+'|'+stage;}
-function pickLabel(ch,drop,roll){return ch.id+': '+ch.title+(drop&&drop.length?' (cut '+drop.map(function(id){return fById(id).name;}).join(', ')+')':'')+(roll?' [rolled '+roll.r+', '+(roll.ok?'success':'failure')+']':'');}
+function planLabel(p){return p.n+' people, '+TEST[p.test].label+' testing, '+scopePts(p.features)+' pts';}
+function pickLabel(ch,drop){return ch.id+': '+ch.title+(drop&&drop.length?' (cut '+drop.map(function(id){return fById(id).name;}).join(', ')+')':'');}
 function lockStage(stage,payload){
-  var s=APP.s;
-  if(stage===0)s.picks['0']=payload.plan.n+' engineers, '+TEST[payload.plan.test].label+' testing, '+scopePts(payload.plan.features)+' pts';
-  else if(stage<7){var ch=CHOICES[stage].filter(function(c){return c.id===payload.choice;})[0];s.picks[String(stage)]=pickLabel(ch,payload.drop);}
+  var s=APP.s;s.letters=s.letters||{};
+  if(stage===0)s.picks['0']=planLabel(payload.plan);
+  else if(stage<7){var ch=CHOICES[stage].filter(function(c){return c.id===payload.choice;})[0];s.picks[String(stage)]=pickLabel(ch,payload.drop);s.letters[String(stage)]=ch.id;}
   else s.picks['7']='Rolled for the demo';
   s.pending=Object.assign({stage:stage},payload);APP.sel=null;saveTeam();
   if(!APP.sync){resolveStage(stage,false);return;}
   renderTeam();window.scrollTo(0,0);
 }
 function resolveStage(stage,auto){
-  var s=APP.s,p=(s.pending&&s.pending.stage===stage)?s.pending:null;s.auto=s.auto||{};
+  var s=APP.s,p=(s.pending&&s.pending.stage===stage)?s.pending:null;s.auto=s.auto||{};s.letters=s.letters||{};
+  var before=snapshot(s);
   if(stage===0){
     var plan=p?p.plan:(APP.sel&&APP.sel.kind==='plan'?APP.sel:defaultPlan());
     startPlan(s,plan);if(auto){s.M-=10;s.auto['0']=true;}
-    s.picks['0']=plan.n+' engineers, '+TEST[plan.test].label+' testing, '+s.S+' pts'+(auto?' (unlocked selection used)':'');
+    s.picks['0']=(auto?'CEO chose: ':'')+planLabel(plan);
     s.log.push({stage:'The Deal',pick:s.picks['0']+': '+plan.features.map(function(id){return fById(id).name;}).join(', ')});
-    s.lastOutcome={stage:0,title:'The Deal is done',auto:auto,text:'The CEO tells the press your crew will deliver a flying car’s software by 1 January 2028. Your forecast says '+monthLabel(Math.ceil(s.S/baseCap(s)*2-1e-9))+'. Let’s see.',reports:[]};
+    s.lastOutcome={stage:0,title:'The Deal is done',auto:auto,text:'The CEO tells the press: flying-car software by 1 January 2028. Your plan says '+monthLabel(Math.ceil(s.S/baseCap(s)*2-1e-9))+'. Let’s see.',deltas:''};
   } else if(stage===7){
-    var o=finalize(s,seed(7));s.result=o;s.picks['7']='Rolled '+o.roll.r+(o.roll.mod>=0?'+':'')+o.roll.mod+': '+(o.roll.ok?'success':'failure');
+    var o=finalize(s,seed(7));s.result=o;s.picks['7']=(auto?'CEO rolled: ':'')+(o.roll.ok?'Demo worked':'Demo failed')+' ('+oddsPct(o.roll.mod,o.roll.dc)+'% odds)';
     s.log.push({stage:'Launch Night',pick:s.picks['7']});s.stageDone=7;s.pending=null;s.phase='end';saveTeam();renderTeam();window.scrollTo(0,0);return;
   } else {
     var cid=p?p.choice:BOSS_PICK[stage],ch=CHOICES[stage].filter(function(c){return c.id===cid;})[0];
     var ctx={drop:p&&p.drop?p.drop.slice():[],seed:seed(stage),roll:null};
     var res=applyChoice(s,stage,ch,ctx);
     if(auto){s.M=clamp(s.M-10,0,100);s.auto[String(stage)]=true;}
-    s.picks[String(stage)]=(auto?'CEO chose ':'')+pickLabel(ch,ctx.drop,res.roll);
+    s.letters[String(stage)]=ch.id;
+    s.picks[String(stage)]=(auto?'CEO chose ':'')+pickLabel(ch,ctx.drop)+(res.roll?(res.roll.ok?' (it worked)':' (it failed)'):'');
     s.log.push({stage:STAGES[stage].name,pick:s.picks[String(stage)]});
-    s.lastOutcome={stage:stage,title:ch.title,auto:auto,text:res.text,reports:res.reports,roll:res.roll};
+    s.stageDone=stage;
+    s.lastOutcome={stage:stage,title:ch.title,auto:auto,text:res.text,roll:res.roll,deltas:deltaChips(before,snapshot(s))};
   }
   s.stageDone=stage;s.pending=null;s.phase='outcome';saveTeam();renderTeam();window.scrollTo(0,0);
 }
-function sealPlan(){
-  var sel=APP.sel,f=planForecast(sel);
-  confirmModal('Lock in the Deal?','<b>'+f.S+' points</b>, <b>'+sel.n+' engineers</b>, '+TEST[sel.test].label.toLowerCase()+' testing. Forecast finish '+monthLabel(f.fm)+'. This can’t be changed.','Lock it in',function(){
-    lockStage(0,{plan:{features:sel.features.slice(),n:sel.n,test:sel.test}});});
-}
-function sealScene(){
-  var sel=APP.sel,ch=CHOICES[sel.stage].filter(function(c){return c.id===sel.choice;})[0];
+function sealPlan(){var sel=APP.sel,f=planForecast(sel);
+  confirmModal('Lock in the Deal?','<b>'+f.S+' points</b>, <b>'+sel.n+' engineers</b>, '+TEST[sel.test].label.toLowerCase()+' testing. This can’t be changed.','Lock it in',function(){
+    if(APP.sync&&APP.control.phase!=='vote'){renderTeam();return;}
+    lockStage(0,{plan:{features:sel.features.slice(),n:sel.n,test:sel.test}});});}
+function sealScene(){var sel=APP.sel,ch=CHOICES[sel.stage].filter(function(c){return c.id===sel.choice;})[0];
   confirmModal('Lock it in?','<b>'+ch.id+': '+esc(ch.title)+'</b>'+(sel.drop.length?', cutting '+esc(sel.drop.map(function(id){return fById(id).name;}).join(', ')):'')+'. This can’t be changed.','Lock it in',function(){
+    if(APP.sync&&APP.control.phase!=='vote'){renderTeam();return;}
     var btn=$app.querySelector('.cc[aria-pressed="true"]'),stage=sel.stage,payload={choice:sel.choice,drop:sel.drop.slice()};
-    if(btn&&!reduceMotion()){btn.insertAdjacentHTML('beforeend','<div class="stamp">Locked in</div>');setTimeout(function(){lockStage(stage,payload);},800);}else lockStage(stage,payload);
-  });
-}
-function rollLaunch(){
-  var s=APP.s,b=$app.querySelector('[data-act="roll-launch"]');if(b)b.disabled=true;
-  var o=finalize(s,seed(7));animateDice('ld',o.roll.r);
-  setTimeout(function(){lockStage(7,{});},reduceMotion()?0:1300);
-}
+    if(btn&&!reduceMotion()){btn.insertAdjacentHTML('beforeend','<div class="stamp">Locked in</div>');setTimeout(function(){lockStage(stage,payload);},700);}else lockStage(stage,payload);});}
+function rollLaunch(){var s=APP.s,b=$app.querySelector('[data-act="roll-launch"]');if(b)b.disabled=true;var o=finalize(s,seed(7));animateDice('ld',o.roll.r);setTimeout(function(){lockStage(7,{});},reduceMotion()?0:1300);}
 
-/* ---------- Host: Game Master live console (projector-friendly) ---------- */
+/* ---------- Game Master console ---------- */
 function teamCount(){return APP.control.teams===8?8:6;}
 function teamLink(i,base){return base+'?team='+i+'&s='+encodeURIComponent(APP.session)+(APP.db?'&db='+encodeURIComponent(APP.db):'');}
 function screenLink(base){return base+'?screen=1&s='+encodeURIComponent(APP.session)+(APP.db?'&db='+encodeURIComponent(APP.db):'');}
 function hostBase(){var el=document.getElementById('base');var v=el?el.value.trim():'';return v||(location.origin+location.pathname);}
 function teamLocked(t,k){return !!t&&(t.stageDone>=k||t.sealed===k);}
-function hostRemaining(){var c=APP.control;if(c.phase!=='vote'||!c.voteSecs)return Infinity;return Math.max(0,c.voteSecs-(Date.now()-c.voteAt)/1000);}
-var CUES={brief:'Read the headline aloud. Crews read their crew chat. Tell your story now, or after voting closes.',
-  vote:'Crews are deciding. Watch the tiles turn green.',
-  closed:'Ask one or two crews why they chose what they did. Tell your story now if you haven’t yet. Then reveal.',
-  reveal:'Crews now see what their choice did. Debrief, then move everyone on.'};
+var CUES={brief:'Read the headline aloud. Crews read their three voices. Tell your story now or after voting closes.',vote:'Crews are deciding. Watch the tiles turn green.',closed:'Ask a crew or two why they chose that. Tell your story. Then reveal.',reveal:'Talk through the split, then move everyone on.'};
 function renderHostShell(){
-  $hud.innerHTML='';$app.className='wrap wide';
-  $app.innerHTML='<div class="row" style="justify-content:space-between"><div><p class="sub" style="margin-top:0">Project Liftoff</p><div class="neon" style="font-size:1.6rem">Game Master</div></div>'+
-   '<div class="row"><span id="h-pill"></span><button class="btn ghost" data-act="toggle-notes" id="notes-btn">Presenter notes</button><a class="btn ghost" href="#setup-sec" data-act="to-setup">Setup and links</a></div></div>'+
-   '<div id="h-stage" class="hstage"></div><div id="h-notes"></div><div id="h-crews"></div><div id="h-final"></div>'+
-   '<div class="ctrl" id="h-ctrl"></div>'+
-   '<details id="setup-sec" class="panel" style="margin-top:28px"><summary><b>Setup, links and detailed board</b></summary>'+
-    '<h2 class="h">Detailed board</h2><div id="h-board"></div>'+
+  $hud.innerHTML='';$app.className='wrap wide';var ro=APP.readOnly;
+  $app.innerHTML='<div class="row" style="justify-content:space-between"><div><p class="sub" style="margin-top:0">Project Liftoff</p><div class="neon" style="font-size:1.6rem">'+(ro?'Live board':'Game Master')+'</div></div>'+
+   '<div class="row"><span id="h-pill"></span>'+(ro?'':'<button class="btn ghost" data-act="toggle-notes">Presenter notes</button><a class="btn ghost" href="#setup-sec" data-act="to-setup">Setup and links</a>')+'</div></div>'+
+   '<div id="h-stage" class="hstage"></div><div id="h-notes"></div><div id="h-body"></div>'+(ro?'':'<div class="ctrl" id="h-ctrl"></div>')+
+   (ro?'':'<details id="setup-sec" class="panel" style="margin-top:28px"><summary><b>Setup, links and full history</b></summary>'+
     '<h2 class="h">Links for crews</h2><div class="field"><label for="base">Game link (where this file is hosted)</label><input id="base" value="'+esc(location.origin+location.pathname)+'"></div>'+
     '<div class="row"><button class="btn cyan" data-act="show-qr">Show crew QR codes</button><button class="btn ghost" data-act="show-links">Show links</button></div><div id="h-links" style="margin-top:14px"></div>'+
     '<h2 class="h">Session</h2><div class="grid2" style="grid-template-columns:repeat(auto-fit,minmax(230px,1fr))">'+
      '<div class="field"><label for="ss">Session code</label><input id="ss" value="'+esc(APP.session)+'"><span class="small muted">New code per run: “dryrun”, then “nibm”.</span></div>'+
      '<div class="field"><label for="dbu">Firebase Realtime Database URL</label><input id="dbu" placeholder="https://your-project-default-rtdb.asia-southeast1.firebasedatabase.app" value="'+esc(APP.db)+'"></div>'+
      '<div class="field"><label for="tc">Crews</label><select id="tc"><option value="6"'+(teamCount()===6?' selected':'')+'>6 crews</option><option value="8"'+(teamCount()===8?' selected':'')+'>8 crews</option></select></div>'+
-    '</div><div class="row"><button class="btn" data-act="save-setup">Save and connect</button><button class="btn danger" data-act="reset-session">Reset this session</button></div></details>';
+    '</div><div class="row"><button class="btn" data-act="save-setup">Save and connect</button><button class="btn danger" data-act="reset-session">Reset this session</button></div>'+
+    '<h2 class="h">Full history (don’t project during voting)</h2><div id="h-board"></div></details>');
   renderHostLive(true);
 }
-function crewStatus(t,K,P){
-  if(!t)return ['none','Not joined'];
-  if(K<0)return ['ok','Ready'];
-  var auto=(t.auto||{})[String(K)];
-  if(P==='reveal'&&t.stageDone>=K)return [auto?'auto':'ok',(auto?'⏰ CEO chose: ':'')+((t.picks||{})[String(K)]||'')];
-  if(teamLocked(t,K))return ['ok','🔒 Locked in'];
-  if(P==='brief')return ['wait','Reading'];
-  if(P==='vote')return ['wait','Deciding…'];
-  return ['auto','⏰ CEO will decide'];
+function hostRemaining(){return voteRemaining();}
+function crewTile(t,j,K,P){
+  var name=esc(t?t.name:'Crew '+j),cls='',txt;
+  if(!t)txt='<span class="c-none">Not joined</span>';
+  else if(K<0){txt='<span class="ok">Ready</span>';cls=' lk';}
+  else if(teamLocked(t,K)){txt='<span class="ok">🔒 Locked in</span>';cls=' lk';}
+  else if(P==='brief')txt='<span class="muted">Reading</span>';
+  else if(P==='vote')txt='<span class="c-wait">Deciding…</span>';
+  else {txt='<span class="bad">⏰ CEO decides</span>';cls=' au';}
+  return '<div class="crew'+cls+'"><div class="cn">'+name+'</div><div class="cs">'+txt+'</div></div>';
 }
+function pollHtml(K,teams,n){
+  var opts=CHOICES[K],cols=opts.map(function(o){return {o:o,crews:[]};});
+  for(var j=1;j<=n;j++){var t=teams['team'+j];if(!t)continue;var auto=!teamLocked(t,K)||!!(t.auto||{})[String(K)];
+    var L=(t.letters||{})[String(K)]||(auto?BOSS_PICK[K]:null);var col=cols.filter(function(c){return c.o.id===L;})[0];if(col)col.crews.push({name:t.name,auto:auto});}
+  return '<div class="poll" style="grid-template-columns:repeat('+cols.length+',minmax(0,1fr))">'+cols.map(function(c){
+    return '<div class="pcol"><div class="ph"><span class="pl">'+c.o.id+'</span><span class="pt">'+esc(c.o.title)+'</span><span class="pn">'+c.crews.length+'</span></div>'+
+      (c.crews.length?'<div class="pchips">'+c.crews.map(function(x){return '<span class="pchip'+(x.auto?' auto':'')+'">'+(x.auto?'⏰ ':'')+esc(x.name)+'</span>';}).join('')+'</div>':'<span class="small muted">No crews</span>')+'</div>';}).join('')+'</div>'+
+    '<p class="small muted">⏰ = didn’t lock in; the CEO chose.</p>';
+}
+function dealTiles(teams,n){var h='';for(var j=1;j<=n;j++){var t=teams['team'+j];if(!t)continue;var auto=!!(t.auto||{})['0']||!teamLocked(t,0);
+  h+='<div class="crew'+(auto?' au':' lk')+'"><div class="cn">'+esc(t.name)+'</div><div class="cs" style="white-space:normal">'+(auto?'⏰ ':'')+esc(((t.picks||{})['0']||'Default plan').replace('CEO chose: ',''))+'</div></div>';}
+  return '<div class="crews" style="margin-top:16px">'+h+'</div>';}
+function leaderboard(teams,n){var rows=[];for(var j=1;j<=n;j++){var t=teams['team'+j];if(t&&t.result)rows.push(t);}
+  if(!rows.length)return '<p class="muted">Results appear as crews finish.</p>';
+  rows.sort(function(a,b){return b.result.score-a.result.score;});
+  return '<div class="lead">'+rows.map(function(t,i){var r=t.result,e=ENDINGS[r.ending]||{};return '<div class="lrow"><span class="rk">'+(i+1)+'</span><b>'+esc(t.name)+'</b><span>'+(e.sigil||'')+' '+esc(e.title||'')+'</span><span class="'+(r.onTime?'ok':'bad')+'">'+(r.onTime?'On time':r.monthsLate+' mo late')+'</span><span class="'+(r.over<=0?'ok':'bad')+'">'+money(r.cost)+'</span><b class="'+(r.score>=60?'ok':'bad')+'">'+r.score+'/100</b></div>';}).join('')+'</div>';}
 function renderHostLive(full){
   if(!document.getElementById('h-stage'))return;
   var c=APP.control,K=c.stage,P=c.phase,teams=APP.hostData.teams||{},n=teamCount(),locked=0,joined=0;
   for(var i=1;i<=n;i++){var ti=teams['team'+i];if(ti)joined++;if(K>=0&&teamLocked(ti,K))locked++;}
   document.getElementById('h-pill').innerHTML=APP.sync?'<span class="pill" style="color:var(--money)">● Live: '+esc(APP.session)+'</span>':'<span class="pill" style="color:var(--red)">● '+(APP.syncMsg==='fail'?'Can’t reach database':'Not connected')+'</span>';
-  var st=K>=0?STAGES[K]:null,artKey=K<0?'hero':K;
-  var stageKey=artKey+'|'+P;
-  if(full||APP._stageKey!==stageKey){
-    APP._stageKey=stageKey;
+  var st=K>=0?STAGES[K]:null,key=(K<0?'hero':K)+'|'+P;
+  if(full||APP._stageKey!==key){APP._stageKey=key;document.getElementById('h-stage').className='hstage'+(P==='reveal'&&K>=0?' compact':'');
     var right=K<0?'<div class="banner-x" style="margin:0">Lobby</div>':P==='vote'?'<div class="huge" id="h-cd">'+fmtSecs(hostRemaining())+'</div>':P==='closed'?'<div class="banner-x" style="margin:0;color:var(--red)">Voting closed</div>':P==='reveal'?'<div class="banner-x" style="margin:0">Reveal</div>':'<div class="banner-x" style="margin:0">Briefing</div>';
-    document.getElementById('h-stage').innerHTML=artHtml(artKey,null,null)+(st?tickerHtml(st.news):'')+
+    document.getElementById('h-stage').innerHTML=artHtml(K<0?'hero':K,st?st.headline:'Scan your crew’s QR code',null)+(st?tickerHtml(st.news):'')+
      '<div class="row" style="justify-content:space-between;align-items:end;margin-top:12px"><div><p class="sub" style="margin-top:0">'+(K<0?'Neo-Colombo, 2027':missionLabel(K)+', '+esc(st.when))+'</p><h1 class="neon">'+(K<0?'Project Liftoff':esc(st.name))+'</h1>'+
-     (K>=0?'<div class="steps">'+PHASES.map(function(ph){return '<span class="'+(ph[0]===P?'on':'')+'">'+ph[1]+'</span>';}).join('')+'</div>':'<p class="story" style="margin:6px 0 0">Scan your crew’s QR code, name your crew, assign roles.</p>')+'</div>'+right+'</div>';
-  }
-  document.getElementById('h-notes').innerHTML=APP.showNotes?'<div class="panel" style="margin-top:12px;border-color:var(--gold)"><div class="small muted">Presenter notes (hide before projecting if you prefer)</div>'+
-    (st?'<p class="read">'+esc(st.news)+'</p><p><b>Cue:</b> '+esc(CUES[P]||'')+'</p><p><b>Your story:</b> '+esc(st.say)+'</p><p><b>Debrief lesson:</b> '+esc(st.lesson)+'</p>':'<p>Show the crew QR codes (Setup and links), let crews join, then start the Deal.</p>')+'</div>':'';
-  var tiles='';for(var j=1;j<=n;j++){var t=teams['team'+j],cs=crewStatus(t,K,P);
-    tiles+='<div class="crew'+(cs[0]==='ok'&&K>=0?' lk':'')+(cs[0]==='auto'?' au':'')+'"><div class="cn">'+esc(t?t.name:'Crew '+j)+'</div><div class="cs '+(cs[0]==='ok'?'ok':cs[0]==='wait'?'c-wait':cs[0]==='auto'?'bad':'c-none')+'">'+esc(cs[1])+'</div></div>';}
-  var allIn=K>=0&&P==='vote'&&joined>0&&locked>=joined;
-  document.getElementById('h-crews').innerHTML='<div class="row" style="justify-content:space-between;margin-top:18px"><h2 class="h" style="margin:0">Crews</h2>'+
-    (K>=0?'<div class="row" style="align-items:baseline"><span class="count">'+locked+' / '+joined+'</span><span class="muted">locked in</span>'+(allIn?'<span class="pill" style="color:var(--money)">All crews locked in</span>':'')+'</div>':'<span class="muted">'+joined+' of '+n+' crews joined</span>')+'</div><div class="crews">'+tiles+'</div>';
-  // controls
-  var dis=APP.sync?'':' disabled',b='';
-  if(K<0)b='<button class="btn big" data-act="h-next"'+dis+'>Start Mission 0: The Deal (briefing)</button>';
-  else if(P==='brief')b='<label class="small" for="vs">Voting window</label><select id="vs" class="sel">'+[[60,'1 min'],[90,'90 sec'],[120,'2 min'],[180,'3 min'],[300,'5 min'],[0,'No timer']].map(function(o){return '<option value="'+o[0]+'"'+(o[0]===(c.voteSecs==null?90:c.voteSecs)?' selected':'')+'>'+o[1]+'</option>';}).join('')+'</select><button class="btn big cyan" data-act="h-vote"'+dis+'>Open voting</button>';
-  else if(P==='vote')b='<button class="btn big" data-act="h-close"'+dis+'>Close voting</button><button class="btn ghost" data-act="h-extend"'+dis+'>+30 sec</button>';
-  else if(P==='closed')b='<button class="btn big" data-act="h-reveal"'+dis+'>Reveal outcomes</button><button class="btn ghost" data-act="h-reopen"'+dis+'>Reopen voting</button>';
-  else if(P==='reveal')b=K<7?'<button class="btn big" data-act="h-next"'+dis+'>Next: '+missionLabel(K+1)+', '+esc(STAGES[K+1].name)+'</button><button class="btn ghost" data-act="h-next-vote"'+dis+'>Next mission, voting open now</button>':'<button class="btn big" data-act="toggle-results">'+(APP.showResults?'Hide final results':'Show final results')+'</button>';
-  document.getElementById('h-ctrl').innerHTML='<div class="ctrl-in"><span class="small muted">'+(K<0?'Lobby':missionLabel(K)+': '+PHASES.filter(function(p){return p[0]===P;})[0][1])+'</span><div class="row">'+b+'</div></div>';
-  document.getElementById('h-final').innerHTML=(K===7&&P==='reveal'&&APP.showResults)?'<h2 class="h">Final results</h2>'+resultsTable(teams,n):'';
-  // detailed board
+     (K>=0?'<div class="steps">'+PHASES.map(function(ph){return '<span class="'+(ph[0]===P?'on':'')+'">'+ph[1]+'</span>';}).join('')+'</div>':'')+'</div>'+right+'</div>';}
+  var notes=document.getElementById('h-notes');
+  if(notes)notes.innerHTML=(!APP.readOnly&&APP.showNotes)?'<div class="panel" style="margin-top:12px;border-color:var(--gold)"><div class="small muted">Presenter notes</div>'+(st?'<p><b>Read aloud:</b> '+esc(st.news)+'</p><p><b>Cue:</b> '+esc(CUES[P]||'')+'</p><p><b>Your story:</b> '+esc(st.say)+'</p><p><b>Lesson:</b> '+esc(st.lesson)+'</p>':'<p>Show the QR codes, let crews join and pick roles, then start the Deal.</p>')+'</div>':'';
+  var allIn=K>=0&&P==='vote'&&joined>0&&locked>=joined,body='';
+  var head='<div class="row" style="justify-content:space-between;margin-top:16px"><h2 class="h" style="margin:0">'+(P==='reveal'&&K>=0?'What the crews chose':'Crews')+'</h2>'+
+    (K>=0&&P!=='reveal'?'<div class="row" style="align-items:baseline"><span class="count">'+locked+' / '+joined+'</span><span class="muted">locked in</span>'+(allIn?'<span class="pill" style="color:var(--money)">All in</span>':'')+'</div>':'<span class="muted">'+joined+' of '+n+' crews joined</span>')+'</div>';
+  if(P==='reveal'&&K>=1&&K<=6)body=pollHtml(K,teams,n);
+  else if(P==='reveal'&&K===0)body=dealTiles(teams,n);
+  else if(P==='reveal'&&K===7)body=(APP.showResults||APP.readOnly)?leaderboard(teams,n):'<p class="muted" style="margin-top:12px">Press <b>Show final results</b> when you’re ready.</p>';
+  else{var tiles='';for(var j=1;j<=n;j++)tiles+=crewTile(teams['team'+j],j,K,P);body='<div class="crews" style="margin-top:12px">'+tiles+'</div>';}
+  document.getElementById('h-body').innerHTML=head+body;
+  var ctrl=document.getElementById('h-ctrl');
+  if(ctrl){var dis=APP.sync?'':' disabled',b='';
+    if(K<0)b='<button class="btn big" data-act="h-next"'+dis+'>Start Mission 0: The Deal</button>';
+    else if(P==='brief')b='<label class="small" for="vs">Voting time</label><select id="vs" class="sel">'+[[60,'1 min'],[90,'90 sec'],[120,'2 min'],[180,'3 min'],[300,'5 min'],[0,'No timer']].map(function(o){return '<option value="'+o[0]+'"'+(o[0]===(c.voteSecs==null?90:c.voteSecs)?' selected':'')+'>'+o[1]+'</option>';}).join('')+'</select><button class="btn big cyan" data-act="h-vote"'+dis+'>Open voting</button>';
+    else if(P==='vote')b='<button class="btn big" data-act="h-close"'+dis+'>Close voting</button>'+(c.voteSecs?'<button class="btn ghost" data-act="h-extend"'+dis+'>+30 sec</button>':'');
+    else if(P==='closed')b='<button class="btn big" data-act="h-reveal"'+dis+'>Reveal</button><button class="btn ghost" data-act="h-reopen"'+dis+'>Reopen voting</button>';
+    else if(P==='reveal')b=K<7?'<button class="btn big" data-act="h-next"'+dis+'>Next: '+missionLabel(K+1)+', '+esc(STAGES[K+1].name)+'</button><button class="btn ghost" data-act="h-next-vote"'+dis+'>Next, voting open now</button>':'<button class="btn big" data-act="toggle-results">'+(APP.showResults?'Hide final results':'Show final results')+'</button>';
+    ctrl.innerHTML='<div class="ctrl-in"><span class="small muted">'+(K<0?'Lobby':missionLabel(K)+': '+PHASES.filter(function(p){return p[0]===P;})[0][1])+'</span><div class="row">'+b+'</div></div>';}
   var bd=document.getElementById('h-board');
-  if(bd){var head='<tr><th>Mission</th>';for(var q=1;q<=n;q++){var tq=teams['team'+q];head+='<th>'+(tq?esc(tq.name):'Crew '+q)+'</th>';}head+='</tr>';
-    var rows='';for(var k=0;k<=7;k++){rows+='<tr class="'+(k===K?'cur':'')+'"><td><b>'+ROMAN[k]+'</b> '+esc(STAGES[k].name)+'</td>';
+  if(bd){var th='<tr><th>Mission</th>';for(var q=1;q<=n;q++){var tq=teams['team'+q];th+='<th>'+(tq?esc(tq.name):'Crew '+q)+'</th>';}th+='</tr>';
+    var rows='';for(var k=0;k<=7;k++){rows+='<tr class="'+(k===K?'cur':'')+'"><td>'+k+' '+esc(STAGES[k].name)+'</td>';
       for(var m=1;m<=n;m++){var t2=teams['team'+m];
-        if(t2&&t2.stageDone>=k&&(k<K||P==='reveal'||k<K))rows+='<td class="c-lock">'+((t2.auto||{})[String(k)]?'⏰ ':'')+esc((t2.picks||{})[String(k)]||'')+'</td>';
-        else if(teamLocked(t2,k))rows+='<td class="c-lock">🔒 Locked in</td>';
-        else rows+='<td class="c-none">—</td>';}
+        if(t2&&t2.stageDone>=k&&(k<K||P==='reveal')){var L=(t2.letters||{})[String(k)];rows+='<td class="c-lock" title="'+esc((t2.picks||{})[String(k)]||'')+'">'+((t2.auto||{})[String(k)]?'⏰ ':'')+esc(k===0?((t2.picks||{})['0']||''):k===7?((t2.picks||{})['7']||''):(L||''))+'</td>';}
+        else if(teamLocked(t2,k))rows+='<td class="c-lock">🔒</td>';else rows+='<td class="c-none">—</td>';}
       rows+='</tr>';}
-    bd.innerHTML='<p class="small muted">Choices for the current mission stay hidden until you reveal. Don’t project this table during voting.</p><div class="board"><table class="tb">'+head+rows+'</table></div>';}
-}
-function resultsTable(teams,n){
-  var rr='',any=false;for(var q=1;q<=n;q++){var t=teams['team'+q];if(t&&t.result){any=true;var r=t.result,e=ENDINGS[r.ending]||{};
-    rr+='<tr><td><b>'+esc(t.name)+'</b></td><td>'+(e.sigil||'')+' '+esc(e.title||r.ending)+'</td><td>'+(r.onTime?'<span class="ok">On time</span>':'<span class="bad">'+r.monthsLate+' mo late</span>')+'</td><td class="'+(r.over<=0?'ok':'bad')+'">'+money(r.cost)+'</td><td>'+r.value+'/'+r.valueMax+'</td><td>'+r.Q+'</td><td>'+r.Sec+'</td><td>'+r.M+'</td><td>'+esc(r.roll)+'</td><td><b>'+r.score+'</b></td></tr>';}}
-  if(!any)return '<p class="muted">Results appear as crews reach the end.</p>';
-  return '<div class="board"><table class="tb"><tr><th>Crew</th><th>Ending</th><th>Time</th><th>Cost</th><th>Value</th><th>Quality</th><th>Security</th><th>Morale</th><th>Demo roll</th><th>Health</th></tr>'+rr+'</table></div>';
+    bd.innerHTML='<div class="board"><table class="tb">'+th+rows+'</table></div>';}
 }
 function hostPoll(){if(!APP.sync)return;dbGet('').then(function(d){d=d||{};APP.hostData=d;if(d.control&&!APP.pendingWrite)mergeControl(d.control);renderHostLive(false);}).catch(function(){});}
-function setControl(patch){
-  mergeControl(Object.assign({},APP.control,patch));APP.pendingWrite=true;renderHostLive(false);
-  return dbPut('control',APP.control).then(function(){APP.pendingWrite=false;hostPoll();}).catch(function(){APP.pendingWrite=false;alert('Couldn’t update the session. Check the connection.');});
+function setControl(patch,serverStart){
+  var next=Object.assign({},APP.control,patch);mergeControl(next);APP.pendingWrite=true;
+  if(serverStart)APP.control.voteStart=Math.round(serverNow());
+  renderHostLive(false);
+  var payload=Object.assign({},APP.control);if(serverStart)payload.voteStart={'.sv':'timestamp'};
+  return dbPut('control',payload).then(function(v){APP.pendingWrite=false;if(v&&typeof v.voteStart==='number')APP.control.voteStart=v.voteStart;hostPoll();}).catch(function(){APP.pendingWrite=false;alert('Couldn’t update the session. Check the connection.');});
 }
 function showLinks(qr){
   var base=hostBase(),n=teamCount(),out=document.getElementById('h-links'),h='';
   if(qr){h='<div class="qr-grid">';for(var i=1;i<=n;i++){var u=teamLink(i,base);h+='<div class="qr"><b>Crew '+i+'</b><div class="q" id="qr'+i+'"></div><a href="'+esc(u)+'" target="_blank" rel="noopener">'+esc(u)+'</a></div>';}h+='</div>';}
   else{h='<ul class="log">';for(var j=1;j<=n;j++){var u2=teamLink(j,base);h+='<li><b>Crew '+j+':</b> <a href="'+esc(u2)+'" target="_blank" rel="noopener" style="color:var(--cyan);word-break:break-all">'+esc(u2)+'</a></li>';}
-    h+='<li><b>Optional second screen:</b> <a href="'+esc(screenLink(base))+'" target="_blank" rel="noopener" style="color:var(--cyan);word-break:break-all">'+esc(screenLink(base))+'</a></li></ul>';}
+    h+='<li><b>Optional read-only board (second screen):</b> <a href="'+esc(screenLink(base))+'" target="_blank" rel="noopener" style="color:var(--cyan);word-break:break-all">'+esc(screenLink(base))+'</a></li></ul>';}
   out.innerHTML=h;
   if(qr){if(typeof QRCode==='undefined'){out.insertAdjacentHTML('afterbegin','<div class="banner">The QR library didn’t load. Use the links instead.</div>');return;}
     for(var k=1;k<=n;k++)new QRCode(document.getElementById('qr'+k),{text:teamLink(k,base),width:190,height:190,colorDark:'#14092B',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});}
 }
-
-/* ---------- Big screen ---------- */
-function renderScreen(){
-  $hud.innerHTML='';$app.className='screen';
-  var c=APP.control,K=c.stage,P=c.phase,teams=APP.hostData.teams||{},n=teamCount();
-  if(!APP.sync){$app.innerHTML=artHtml('hero',['Neo-Colombo, 2027.','One flying car. One deadline.','Your crew writes the code.'])+'<h1 class="neon" style="margin-top:20px">Project Liftoff</h1><div class="banner">Big screen needs the live database. Open it from the Game Master console’s links.</div>';return;}
-  var crews='';for(var i=1;i<=n;i++){var t=teams['team'+i],lk=K>=0&&teamLocked(t,K),txt;
-    if(!t)txt='<span class="c-none">Not joined</span>';
-    else if(K<0)txt='<span class="ok">Ready</span>';
-    else if(P==='reveal'){var pk=(t.picks||{})[String(K)];txt=t.stageDone>=K?((t.auto||{})[String(K)]?'⏰ ':'')+esc(pk||'…'):'…';}
-    else txt=lk?'<span class="ok">🔒 Locked in</span>':(P==='brief'?'<span class="muted">Reading</span>':'<span class="c-wait">Deciding…</span>');
-    crews+='<div class="crew'+(lk?' lk':'')+'"><div class="cn">'+esc(t?t.name:'Crew '+i)+'</div><div class="cs">'+txt+'</div></div>';}
-  var st=K>=0?STAGES[K]:null,mid='';
-  if(K<0)mid='<h1 class="neon" style="margin-top:18px">Project Liftoff</h1><p class="story">Scan your crew’s QR code, name your crew and pick your roles.</p>';
-  else{
-    var center=P==='vote'?'<div class="huge" id="s-cd">'+fmtSecs(hostRemaining())+'</div>':P==='closed'?'<div class="huge" style="color:var(--red)">Voting closed</div>':P==='reveal'?'<div class="banner-x">The crews chose…</div>':'<div class="banner-x">Briefing</div>';
-    mid='<div class="row" style="justify-content:space-between;align-items:end;margin-top:14px"><div><p class="sub">'+missionLabel(K)+', '+esc(st.when)+'</p><h1 class="neon">'+esc(st.name)+'</h1></div>'+center+'</div>';
-  }
-  var final=(K===7&&P==='reveal')?'<h2 class="h">Final results</h2>'+resultsTable(teams,n):'';
-  $app.innerHTML=artHtml(K<0?'hero':K,st?st.panels:null,null)+(st?tickerHtml(st.news):'')+mid+'<div class="crews">'+crews+'</div>'+final;
-}
-function screenPoll(){if(!APP.sync)return;dbGet('').then(function(d){d=d||{};var before=JSON.stringify([APP.control,APP.hostData.teams]);APP.hostData=d;if(d.control)mergeControl(d.control);
-  if(JSON.stringify([APP.control,APP.hostData.teams])!==before)renderScreen();}).catch(function(){});}
 
 /* ---------- Events ---------- */
 document.addEventListener('click',function(ev){
@@ -1023,67 +982,58 @@ document.addEventListener('click',function(ev){
   if(act==='goto'){ev.preventDefault();location.hash=el.getAttribute('data-to');location.reload();return;}
   if(act==='begin'){var v=(document.getElementById('tn').value||'').trim();APP.s.name=v||('Crew '+APP.team);APP.s.phase='party';saveTeam();renderTeam();window.scrollTo(0,0);return;}
   if(act==='party-ready'){APP.s.phase='play';saveTeam();renderTeam();window.scrollTo(0,0);return;}
-  if(act==='feat'){if(el.closest('fieldset[disabled]'))return;var id=el.getAttribute('data-id');if(fById(id).must)return;var a=APP.sel.features,i=a.indexOf(id);if(i>=0)a.splice(i,1);else a.push(id);el.setAttribute('aria-pressed',String(i<0));renderPlanForecast();return;}
-  if(act==='test'){if(el.closest('fieldset[disabled]'))return;APP.sel.test=el.getAttribute('data-id');$app.querySelectorAll('[data-act="test"]').forEach(function(b){b.setAttribute('aria-pressed',String(b===el));});renderPlanForecast();return;}
-  if(act==='seal-plan'){if(!el.disabled)sealPlan();return;}
+  if(act==='feat'){if(el.disabled||APP.dealLock)return;var id=el.getAttribute('data-id');if(fById(id).must)return;var a=APP.sel.features,i=a.indexOf(id);if(i>=0)a.splice(i,1);else a.push(id);el.setAttribute('aria-pressed',String(i<0));renderFit();return;}
+  if(act==='test'){if(el.disabled||APP.dealLock)return;APP.sel.test=el.getAttribute('data-id');$app.querySelectorAll('[data-act="test"]').forEach(function(b){b.setAttribute('aria-pressed',String(b===el));});renderFit();return;}
+  if(act==='seal-plan'){sealPlan();return;}
   if(act==='pick'){if(el.disabled||el.getAttribute('aria-disabled')==='true')return;APP.sel.choice=el.getAttribute('data-id');APP.sel.drop=[];var y=window.scrollY;renderTeam();window.scrollTo(0,y);return;}
   if(act==='drop'){var d=el.getAttribute('data-id'),arr=APP.sel.drop,ix=arr.indexOf(d);if(ix>=0)arr.splice(ix,1);else arr.push(d);var y2=window.scrollY;renderTeam();window.scrollTo(0,y2);return;}
   if(act==='seal-scene'){if(sealReady())sealScene();return;}
   if(act==='continue'){APP.s.phase='play';APP.s.lastOutcome=null;saveTeam();renderTeam();window.scrollTo(0,0);return;}
   if(act==='roll-launch'){rollLaunch();return;}
-  // host
-  if(act==='h-next'){setControl({stage:APP.control.stage+1,phase:'brief',voteAt:0});return;}
-  if(act==='h-next-vote'){var vs0=APP.control.voteSecs==null?90:APP.control.voteSecs;setControl({stage:APP.control.stage+1,phase:'vote',voteSecs:vs0,voteAt:Date.now()});return;}
-  if(act==='h-vote'){var vs=+(document.getElementById('vs')||{value:90}).value;setControl({phase:'vote',voteSecs:vs,voteAt:Date.now()});return;}
-  if(act==='h-extend'){var c0=APP.control;if(c0.voteSecs){setControl({voteSecs:c0.voteSecs+30});}return;}
+  if(act==='h-next'){setControl({stage:APP.control.stage+1,phase:'brief',voteStart:0});return;}
+  if(act==='h-next-vote'){setControl({stage:APP.control.stage+1,phase:'vote'},true);return;}
+  if(act==='h-vote'){var vs=+(document.getElementById('vs')||{value:90}).value;setControl({phase:'vote',voteSecs:vs},true);return;}
+  if(act==='h-extend'){if(APP.control.voteSecs)setControl({voteSecs:APP.control.voteSecs+30});return;}
   if(act==='h-close'){setControl({phase:'closed'});return;}
-  if(act==='h-reopen'){setControl({phase:'vote',voteAt:Date.now()});return;}
+  if(act==='h-reopen'){setControl({phase:'vote'},true);return;}
   if(act==='h-reveal'){var nn=teamCount(),tm=APP.hostData.teams||{},miss=0;for(var q=1;q<=nn;q++){var tq=tm['team'+q];if(tq&&!teamLocked(tq,APP.control.stage))miss++;}
-    if(miss){confirmModal('Reveal now?',miss+' crew(s) haven’t locked in. The CEO will decide for them.','Reveal',function(){setControl({phase:'reveal'});});}else setControl({phase:'reveal'});return;}
+    if(miss)confirmModal('Reveal now?',miss+' crew(s) didn’t lock in. The CEO decides for them.','Reveal',function(){setControl({phase:'reveal'});});else setControl({phase:'reveal'});return;}
   if(act==='toggle-notes'){APP.showNotes=!APP.showNotes;renderHostLive(false);return;}
   if(act==='toggle-results'){APP.showResults=!APP.showResults;renderHostLive(false);return;}
-  if(act==='to-setup'){var d=document.getElementById('setup-sec');if(d)d.open=true;return;}
+  if(act==='to-setup'){var dd=document.getElementById('setup-sec');if(dd)dd.open=true;return;}
   if(act==='show-links'){showLinks(false);return;}
   if(act==='show-qr'){showLinks(true);return;}
-  if(act==='save-setup'){APP.session=sanitizeSession(document.getElementById('ss').value);APP.db=normDb(document.getElementById('dbu').value);APP.control.teams=+document.getElementById('tc').value;
+  if(act==='save-setup'){APP.session=sanitizeSession(document.getElementById('ss').value);APP.db=normDb(document.getElementById('dbu').value);var tcv=+document.getElementById('tc').value||6;
     LS.set('liftoff:session',APP.session);LS.set('liftoff:db',APP.db);
-    testSync().then(function(ok){APP.control.teams=+document.getElementById('tc').value||6;if(ok)dbPut('control',APP.control).catch(function(){});renderHostShell();hostPoll();});return;}
+    testSync().then(function(ok){APP.control.teams=tcv;if(ok)dbPut('control',APP.control).catch(function(){});renderHostShell();hostPoll();});return;}
   if(act==='reset-session'){confirmModal('Reset “'+APP.session+'”?','Deletes every crew’s progress in this session. Use it after a dry run, never mid-game.','Reset',function(){
-    if(!APP.sync)return;dbDel('').then(function(){mergeControl({teams:APP.control.teams});return dbPut('control',APP.control);}).then(function(){APP.hostData={};renderHostLive();}).catch(function(){alert('Reset failed.');});});return;}
+    if(!APP.sync)return;dbDel('').then(function(){mergeControl({teams:APP.control.teams});return dbPut('control',APP.control);}).then(function(){APP.hostData={};renderHostLive(true);}).catch(function(){alert('Reset failed.');});});return;}
 });
-document.addEventListener('input',function(ev){if(ev.target.id==='nrange'){APP.sel.n=+ev.target.value;var n=document.getElementById('nval');if(n)n.textContent=APP.sel.n;renderPlanForecast();}});
+document.addEventListener('input',function(ev){if(ev.target.id==='nrange'){APP.sel.n=+ev.target.value;var n=document.getElementById('nval');if(n)n.textContent=APP.sel.n;renderFit();}});
 document.addEventListener('keydown',function(ev){if(ev.key==='Escape'&&$modal.innerHTML)closeModal();});
+document.addEventListener('visibilitychange',function(){if(!document.hidden&&APP.role==='team'&&APP.sync)pollControl();});
 
 /* ---------- Boot ---------- */
-function teamTick(){
-  var cd=document.getElementById('cd');
-  if(cd){var r=voteRemaining();cd.textContent=fmtSecs(r);cd.classList.toggle('hot',r<=15);if(r<=0&&APP.s.phase==='play')renderTeam();}
-}
+function controlKey(){var c=APP.control;return c.stage+'|'+c.phase+'|'+c.voteStart+'|'+c.voteSecs;}
+function pollControl(){return dbGet('control').then(function(c){if(!c)return;var b=controlKey();mergeControl(c);var chg=b!==controlKey(),s=APP.s;
+  if(s.phase==='outcome'&&APP.control.stage>s.stageDone){s.phase='play';s.lastOutcome=null;saveTeam();renderTeam();window.scrollTo(0,0);}
+  else if(chg&&s.phase==='play')renderTeam();}).catch(function(){});}
+function teamLoop(){pollControl().then(function(){setTimeout(teamLoop,APP.control.phase==='vote'?1000:2000);});}
+function teamTick(){var cd=document.getElementById('cd');if(cd){var r=voteRemaining();cd.textContent=fmtSecs(r);cd.classList.toggle('hot',r<=15);if(r<=0&&APP.s.phase==='play')renderTeam();}}
 function bootTeam(){
   APP.s=loadLocal()||newState();
   if(APP.db)$app.innerHTML='<div class="center" style="padding-top:14vh"><div class="big-emoji">📡</div><h1 class="neon">Connecting…</h1></div>';
-  testSync().then(function(){
-    if(!APP.sync)return null;
+  testSync().then(function(){if(!APP.sync)return null;
     return dbGet('teams/team'+APP.team).then(function(r){if(r&&r.state&&r.state.v===1&&(r.state.stageDone>APP.s.stageDone||(r.state.pending&&!APP.s.pending&&r.state.stageDone>=APP.s.stageDone))){APP.s=r.state;LS.set(teamKey(),JSON.stringify(APP.s));}}).catch(function(){});
-  }).then(function(){
-    renderTeam();
-    if(APP.sync){setInterval(function(){dbGet('control').then(function(c){if(!c)return;var b=APP.control.stage+'|'+APP.control.phase+'|'+APP.control.voteAt+'|'+APP.control.voteSecs;mergeControl(c);
-      var chg=b!==APP.control.stage+'|'+APP.control.phase+'|'+APP.control.voteAt+'|'+APP.control.voteSecs;
-      if(APP.s.phase==='outcome'&&APP.control.stage>APP.s.stageDone){APP.s.phase='play';APP.s.lastOutcome=null;saveTeam();renderTeam();window.scrollTo(0,0);}
-      else if(chg&&APP.s.phase==='play')renderTeam();}).catch(function(){});},2000);
-      setInterval(teamTick,1000);}
-  });
+  }).then(function(){renderTeam();if(APP.sync){teamLoop();setInterval(teamTick,250);setInterval(syncClock,60000);}});
 }
 function bootHost(){
   renderHostShell();
-  testSync().then(function(ok){renderHostShell();if(ok){hostPoll();setInterval(hostPoll,1500);}});
-  setInterval(function(){var c=APP.control;if(c.phase==='vote'){var r=hostRemaining(),el=document.getElementById('h-cd');if(el){el.textContent=fmtSecs(r);el.style.color=r<=15?'var(--red)':'';}if(c.voteSecs&&r<=0&&APP.sync&&!APP.pendingWrite){setControl({phase:'closed'});}}},500);
+  testSync().then(function(ok){renderHostShell();if(ok){hostPoll();setInterval(hostPoll,1200);setInterval(syncClock,60000);}});
+  setInterval(function(){var c=APP.control;if(c.phase==='vote'){var r=hostRemaining(),el=document.getElementById('h-cd');if(el){el.textContent=fmtSecs(r);el.style.color=r<=15?'var(--red)':'';}
+    if(!APP.readOnly&&c.voteSecs&&r<=0&&APP.sync&&!APP.pendingWrite)setControl({phase:'closed'});}},250);
 }
-function bootScreen(){
-  testSync().then(function(ok){renderScreen();if(ok){screenPoll();setInterval(screenPoll,1500);}});
-  setInterval(function(){var el=document.getElementById('s-cd');if(el)el.textContent=fmtSecs(hostRemaining());},1000);
-}
-if(APP.role==='team')bootTeam();else if(APP.role==='host')bootHost();else if(APP.role==='screen')bootScreen();else renderLanding();
+if(APP.role==='team')bootTeam();else if(APP.role==='host')bootHost();else renderLanding();
 </script>
 </body>
 </html>
